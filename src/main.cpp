@@ -799,10 +799,6 @@ bool GetTransaction(const uint256 &hash, CTransaction &tx, uint256 &hashBlock)
 
 
 
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // CBlock and CBlockIndex
@@ -841,61 +837,69 @@ int static generateMTRandom(unsigned int s, int range)
 
 int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 {
-        int64 nSubsidy = 5000 * COIN;
+        int64 nSubsidy = 1000 * COIN;
          
         std::string cseed_str = prevHash.ToString().substr(7,7);
         const char* cseed = cseed_str.c_str();
         long seed = hex2long(cseed);
-        int rand = generateMTRandom(seed, 999999);
+        int rand = generateMTRandom(seed, 99999);
+        
         int rand1 = 0;
         int rand2 = 0;
         int rand3 = 0;
         int rand4 = 0;
         int rand5 = 0;
        
-        if(nHeight < 100000)    
+        int height1 = 100000;
+        int height2 = 200000;
+        int height3 = 300000;
+        int height4 = 400000;
+        int height5 = 500000;
+        int height6 = 600000;
+
+        if(nHeight < height1)    
         {
-                nSubsidy = (1 + rand) * COIN;
+                nSubsidy = (1 + rand) * COIN > nSubsidy ? (1 + rand) * COIN : nSubsidy;
         }
-        else if(nHeight < 200000)      
+        else if(nHeight < height2)      
         {
                 cseed_str = prevHash.ToString().substr(7,7);
                 cseed = cseed_str.c_str();
                 seed = hex2long(cseed);
-                rand1 = generateMTRandom(seed, 499999);
-                nSubsidy = (1 + rand1) * COIN;
+                rand1 = generateMTRandom(seed, 49999);
+                nSubsidy = (1 + rand1) * COIN > nSubsidy ? (1 + rand1) * COIN : nSubsidy;
         }
-        else if(nHeight < 300000)      
+        else if(nHeight < height3)      
         {
                 cseed_str = prevHash.ToString().substr(6,7);
                 cseed = cseed_str.c_str();
                 seed = hex2long(cseed);
-                rand2 = generateMTRandom(seed, 249999);
-                nSubsidy = (1 + rand2) * COIN;
+                rand2 = generateMTRandom(seed, 24999);
+                nSubsidy = (1 + rand2) * COIN > nSubsidy ? (1 + rand2) * COIN : nSubsidy;
         }
-        else if(nHeight < 400000)      
+        else if(nHeight < height4)      
         {
                 cseed_str = prevHash.ToString().substr(7,7);
                 cseed = cseed_str.c_str();
                 seed = hex2long(cseed);
-                rand3 = generateMTRandom(seed, 124999);
-                nSubsidy = (1 + rand3) * COIN;
+                rand3 = generateMTRandom(seed, 12499);
+                nSubsidy = (1 + rand3) * COIN > nSubsidy ? (1 + rand3) * COIN : nSubsidy;
         }
-        else if(nHeight < 500000)      
+        else if(nHeight < height5)      
         {
                 cseed_str = prevHash.ToString().substr(7,7);
                 cseed = cseed_str.c_str();
                 seed = hex2long(cseed);
-                rand4 = generateMTRandom(seed, 62499);
-                nSubsidy = (1 + rand4) * COIN;
+                rand4 = generateMTRandom(seed, 6249);
+                nSubsidy = (1 + rand4) * COIN > nSubsidy ? (1 + rand4) * COIN : nSubsidy;
         }
-        else if(nHeight < 600000)      
+        else if(nHeight < height6)      
         {
                 cseed_str = prevHash.ToString().substr(6,7);
                 cseed = cseed_str.c_str();
                 seed = hex2long(cseed);
-                rand5 = generateMTRandom(seed, 31249);
-                nSubsidy = (1 + rand5) * COIN;
+                rand5 = generateMTRandom(seed, 3124);
+                nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
         }
  
     return nSubsidy + nFees;
@@ -903,8 +907,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 
 
 
-static const int64 nTargetTimespan = 4 * 60 * 60; // KittehCoin: every 4 hours
-static const int64 nTargetSpacing = 60; // KittehCoin: 1 minutes
+static const int64 nTargetTimespan = 1 * 60 * 60; // KittehCoin: every hour
+static const int64 nTargetSpacing = 30; // KittehCoin: 30 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2092,7 +2096,7 @@ bool LoadBlockIndex(bool fAllowNew)
 		//   vMerkleTree: 6f80efd038 
 
         // Genesis block
-        const char* pszTimestamp = "ICanHazKitteh at epoch 1387773625. Meow.";
+        const char* pszTimestamp = "ICanHazKitteh at epoch 1387779684. Meow. Now pet me.";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2104,14 +2108,14 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1387773625;
+        block.nTime    = 1387779684;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 703577;
+        block.nNonce   = 2714385;
 
         if (fTestNet)
         {
-            block.nTime    = 1387773625;
-            block.nNonce   = 703577;
+            block.nTime    = 1387779684;
+            block.nNonce   = 0;
         }
 
         //// debug print
@@ -2119,9 +2123,9 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
 
-        assert(block.hashMerkleRoot == uint256("0x8718644913581562c59188af4262eddde89860d7e6b7cbba82377499aab497e3"));
+        assert(block.hashMerkleRoot == uint256("0xc2adb964220f170f6c4fe9002f0db19a6f9c9608f6f765ba0629ac3897028de5"));
 
-        if (true && block.GetHash() != hashGenesisBlock)
+        if (false && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're

@@ -46,7 +46,7 @@ static const int fHaveUPnP = false;
 
 extern CScript COINBASE_FLAGS;
 
-static const uint256 hashGenesisBlockOfficial("0x35a2169eaf18a9378325e9f7fc1a81b8acb9bee26df2e563e642c866cdc7bc86");
+static const uint256 hashGenesisBlockOfficial("0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76");
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
@@ -513,7 +513,7 @@ public:
         return nValueOut;
     }
 
-    /** Amount of bitcoins coming in to this transaction
+    /** Amount of kittehcoins coming in to this transaction
         Note that lightweight clients may not know anything besides the hash of previous transactions,
         so may not be able to calculate this.
 
@@ -527,7 +527,7 @@ public:
     {
         // Large (in bytes) low-priority (new, small-coin) transactions
         // need a fee.
-        return dPriority > COIN * 1440 / 250; // KittehCoin: 1440 blocks found a day. Priority cutoff is 1 kittehcoin day / 250 bytes.
+        return dPriority > COIN * 2880 / 250; // KittehCoin: 2880 blocks found a day. Priority cutoff is 1 kittehcoin day / 250 bytes.
     }
 
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
