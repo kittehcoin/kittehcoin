@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
-// Copyright (c) 2013 DogeCoin Developers
+// Copyright (c) 2013 KittehCoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -295,16 +295,16 @@ void ThreadIRCSeed2(void* parg)
         }
         
         if (fTestNet) {
-            Send(hSocket, "JOIN #dogecoinTEST3\r");
-            Send(hSocket, "WHO #dogecoinTEST3\r");
+            Send(hSocket, "JOIN #kittehcoinTEST3\r");
+            Send(hSocket, "WHO #kittehcoinTEST3\r");
         } else {
-            // randomly join #dogecoin00-#dogecoin99
+            // randomly join #kittehcoin00-#kittehcoin99
             // network is now over 3k peers , get them to join 50 random channels!
             //            channel_number = 0; 
             int channel_number = GetRandInt(50);
 
-            Send(hSocket, strprintf("JOIN #dogecoin%02d\r", channel_number).c_str());
-            Send(hSocket, strprintf("WHO #dogecoin%02d\r", channel_number).c_str());
+            Send(hSocket, strprintf("JOIN #kittehcoin%02d\r", channel_number).c_str());
+            Send(hSocket, strprintf("WHO #kittehcoin%02d\r", channel_number).c_str());
         }
 
         int64 nStart = GetTime();

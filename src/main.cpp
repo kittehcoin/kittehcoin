@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
-// Copyright (c) 2013 DogeCoin Developers
+// Copyright (c) 2013 KittehCoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -34,7 +34,7 @@ unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 
 uint256 hashGenesisBlock = hashGenesisBlockOfficial;
-static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // DogeCoin: starting difficulty is 1 / 2^12
+static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // KittehCoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 CBigNum bnBestChainWork = 0;
@@ -54,7 +54,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "DogeCoin Signed Message:\n";
+const string strMessageMagic = "KittehCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -841,7 +841,7 @@ int static generateMTRandom(unsigned int s, int range)
 
 int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 {
-        int64 nSubsidy = 10000 * COIN;
+        int64 nSubsidy = 5000 * COIN;
          
         std::string cseed_str = prevHash.ToString().substr(7,7);
         const char* cseed = cseed_str.c_str();
@@ -903,8 +903,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 
 
 
-static const int64 nTargetTimespan = 4 * 60 * 60; // DogeCoin: every 4 hours
-static const int64 nTargetSpacing = 60; // DogeCoin: 1 minutes
+static const int64 nTargetTimespan = 4 * 60 * 60; // KittehCoin: every 4 hours
+static const int64 nTargetSpacing = 60; // KittehCoin: 1 minutes
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -963,7 +963,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
         return pindexLast->nBits;
     }
 
-    // DogeCoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // KittehCoin: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
     int blockstogoback = nInterval-1;
     if ((pindexLast->nHeight+1) != nInterval)
@@ -1253,7 +1253,7 @@ bool CTransaction::ConnectInputs(MapPrevTx inputs,
 {
     // Take over previous transactions' spent pointers
     // fBlock is true when this is called from AcceptBlock when a new best-block is added to the blockchain
-    // fMiner is true when called from the internal dogecoin miner
+    // fMiner is true when called from the internal kittehcoin miner
     // ... both are false when called from CTransaction::AcceptToMemoryPool
     if (!IsCoinBase())
     {
@@ -2006,7 +2006,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "DogeCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "KittehCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }
@@ -3549,7 +3549,7 @@ CBlock* CreateNewBlock(CReserveKey& reservekey)
                 continue;
 
             // Transaction fee required depends on block size
-            // DogeCoind: Reduce the exempted free transactions to 500 bytes (from Bitcoin's 3000 bytes)
+            // KittehCoind: Reduce the exempted free transactions to 500 bytes (from Bitcoin's 3000 bytes)
             bool fAllowFree = (nBlockSize + nTxSize < 1500 || CTransaction::AllowFree(dPriority));
             int64 nMinFee = tx.GetMinFee(nBlockSize, fAllowFree, GMF_BLOCK);
 

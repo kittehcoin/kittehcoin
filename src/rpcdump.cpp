@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2012 Bitcoin Developers
 // Copyright (c) 2011-2012 Litecoin Developers
-// Copyright (c) 2013 DogeCoin Developers
+// Copyright (c) 2013 KittehCoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +38,7 @@ Value importprivkey(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "importprivkey <dogecoinprivkey> [label]\n"
+            "importprivkey <kittehcoinprivkey> [label]\n"
             "Adds a private key (as returned by dumpprivkey) to your wallet.");
 
     string strSecret = params[0].get_str();
@@ -75,13 +75,13 @@ Value dumpprivkey(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-        "dumpprivkey <dogecoinaddress>\n"
-        "Reveals the private key corresponding to <dogecoinaddress>.");
+        "dumpprivkey <kittehcoinaddress>\n"
+        "Reveals the private key corresponding to <kittehcoinaddress>.");
 
     string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-    throw JSONRPCError(-5, "Invalid DogeCoin address");
+    throw JSONRPCError(-5, "Invalid KittehCoin address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(-3, "Address does not refer to a key");

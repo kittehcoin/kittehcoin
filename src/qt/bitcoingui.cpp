@@ -4,7 +4,7 @@
  * W.J. van der Laan 2011-2012
  * The Bitcoin Developers 2011-2012
  * The Litecoin Developers 2011-2013
- * The DogeCoin Developers 2013
+ * The KittehCoin Developers 2013
  */
 #include "bitcoingui.h"
 #include "transactiontablemodel.h"
@@ -72,7 +72,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     rpcConsole(0)
 {
     resize(850, 550);
-    setWindowTitle(tr("DogeCoin") + " - " + tr("Wallet"));
+    setWindowTitle(tr("KittehCoin") + " - " + tr("Wallet"));
 #ifndef Q_WS_MAC
     qApp->setWindowIcon(QIcon(":icons/bitcoin"));
     setWindowIcon(QIcon(":icons/bitcoin"));
@@ -232,7 +232,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(receiveCoinsAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Pls Send"), this);
-    sendCoinsAction->setToolTip(tr("Send coins to a DogeCoin address"));
+    sendCoinsAction->setToolTip(tr("Send coins to a KittehCoin address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -277,17 +277,17 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About DogeCoin"), this);
-    aboutAction->setToolTip(tr("Show information about DogeCoin"));
+    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About KittehCoin"), this);
+    aboutAction->setToolTip(tr("Show information about KittehCoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for DogeCoin"));
+    optionsAction->setToolTip(tr("Modify configuration options for KittehCoin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
-    toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("Show/Hide &DogeCoin"), this);
-    toggleHideAction->setToolTip(tr("Show or hide the DogeCoin window"));
+    toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("Show/Hide &KittehCoin"), this);
+    toggleHideAction->setToolTip(tr("Show or hide the KittehCoin window"));
     exportAction = new QAction(QIcon(":/icons/export"), tr("&So Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
@@ -380,7 +380,7 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
 #endif
             if(trayIcon)
             {
-                trayIcon->setToolTip(tr("DogeCoin client") + QString(" ") + tr("[testnet]"));
+                trayIcon->setToolTip(tr("KittehCoin client") + QString(" ") + tr("[testnet]"));
                 trayIcon->setIcon(QIcon(":/icons/toolbar_testnet"));
                 toggleHideAction->setIcon(QIcon(":/icons/toolbar_testnet"));
             }
@@ -444,7 +444,7 @@ void BitcoinGUI::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setToolTip(tr("DogeCoin client"));
+    trayIcon->setToolTip(tr("KittehCoin client"));
     trayIcon->setIcon(QIcon(":/icons/toolbar"));
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -481,7 +481,7 @@ void BitcoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if(reason == QSystemTrayIcon::Trigger)
     {
-        // Click on system tray icon triggers "show/hide DogeCoin"
+        // Click on system tray icon triggers "show/hide KittehCoin"
         toggleHideAction->trigger();
     }
 }
@@ -515,7 +515,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to DogeCoin network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to KittehCoin network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
@@ -631,12 +631,12 @@ void BitcoinGUI::setMining(bool mining, int hashrate)
     if (mining)
     {
         labelMiningIcon->setPixmap(QIcon(":/icons/mining_active").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-        labelMiningIcon->setToolTip(tr("Dig DogeCoins at %1 hashes per second").arg(hashrate));
+        labelMiningIcon->setToolTip(tr("Dig KittehCoins at %1 hashes per second").arg(hashrate));
     }
     else
     {
         labelMiningIcon->setPixmap(QIcon(":/icons/mining_inactive").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-        labelMiningIcon->setToolTip(tr("Not dig DogeCoins"));
+        labelMiningIcon->setToolTip(tr("Not dig KittehCoins"));
     }
 }
 
@@ -851,7 +851,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
         if (nValidUrisFound)
             gotoSendCoinsPage();
         else
-            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid DogeCoin address or malformed URI parameters."));
+            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid KittehCoin address or malformed URI parameters."));
     }
 
     event->acceptProposedAction();
@@ -866,7 +866,7 @@ void BitcoinGUI::handleURI(QString strURI)
         gotoSendCoinsPage();
     }
     else
-        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid DogeCoin address or malformed URI parameters."));
+        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid KittehCoin address or malformed URI parameters."));
 }
 
 void BitcoinGUI::setEncryptionStatus(int status)

@@ -120,7 +120,7 @@ OBJS= \
     obj/noui.o
 
 
-all: dogecoind
+all: kittehcoind
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -141,7 +141,7 @@ obj/%.o: %.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-dogecoind: $(OBJS:obj/%=obj/%)
+kittehcoind: $(OBJS:obj/%=obj/%)
 	$(CXX) $(xCXXFLAGS) -o $@ $^ $(xLDFLAGS) $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -153,11 +153,11 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_dogecoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_kittehcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(xLDFLAGS) $(LIBS)
 
 clean:
-	-rm -f dogecoind test_dogecoin
+	-rm -f kittehcoind test_kittehcoin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

@@ -78,7 +78,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    if(uri.scheme() != QString("dogecoin"))
+    if(uri.scheme() != QString("kittehcoin"))
         return false;
 
     // check if the address is valid
@@ -128,13 +128,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert dogecoin:// to dogecoin:
+    // Convert kittehcoin:// to kittehcoin:
     //
-    //    Cannot handle this later, because dogecoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because kittehcoin:// will cause Qt to see the part after // as host,
     //    which will lowercase it (and thus invalidate the address).
-    if(uri.startsWith("dogecoin://"))
+    if(uri.startsWith("kittehcoin://"))
     {
-        uri.replace(0, 11, "dogecoin:");
+        uri.replace(0, 11, "kittehcoin:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -278,12 +278,12 @@ bool ToolTipToRichTextFilter::eventFilter(QObject *obj, QEvent *evt)
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "DogeCoin.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "KittehCoin.lnk";
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for DogeCoin.lnk
+    // check for KittehCoin.lnk
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -360,7 +360,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "dogecoin.desktop";
+    return GetAutostartDir() / "kittehcoin.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -398,10 +398,10 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out|std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a dogecoin.desktop file to the autostart directory:
+        // Write a kittehcoin.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=DogeCoin\n";
+        optionFile << "Name=KittehCoin\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -422,10 +422,10 @@ bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 HelpMessageBox::HelpMessageBox(QWidget *parent) :
     QMessageBox(parent)
 {
-    header = tr("DogeCoin-Qt") + " " + tr("version") + " " +
+    header = tr("KittehCoin-Qt") + " " + tr("version") + " " +
         QString::fromStdString(FormatFullVersion()) + "\n\n" +
         tr("Usage:") + "\n" +
-        "  dogecoin-qt [" + tr("command-line options") + "]                     " + "\n";
+        "  kittehcoin-qt [" + tr("command-line options") + "]                     " + "\n";
 
     coreOptions = QString::fromStdString(HelpMessage());
 
@@ -434,7 +434,7 @@ HelpMessageBox::HelpMessageBox(QWidget *parent) :
         "  -min                   " + tr("Start minimized") + "\n" +
         "  -splash                " + tr("Show splash screen on startup (default: 1)") + "\n";
 
-    setWindowTitle(tr("DogeCoin-Qt"));
+    setWindowTitle(tr("KittehCoin-Qt"));
     setTextFormat(Qt::PlainText);
     // setMinimumWidth is ignored for QMessageBox so put in nonbreaking spaces to make it wider.
     setText(header + QString(QChar(0x2003)).repeated(50));
