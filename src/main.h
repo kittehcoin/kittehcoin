@@ -44,13 +44,9 @@ static const int fHaveUPnP = true;
 static const int fHaveUPnP = false;
 #endif
 
-
 extern CScript COINBASE_FLAGS;
 
-
-
-
-static const uint256 hashGenesisBlockOfficial("0x1058d193ad41ad2e057114568be404aedcead30bdac05c8c565b6b121e7e7ba3");
+static const uint256 hashGenesisBlockOfficial("0x35a2169eaf18a9378325e9f7fc1a81b8acb9bee26df2e563e642c866cdc7bc86");
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
@@ -107,15 +103,6 @@ int GetNumBlocksOfPeers();
 bool IsInitialBlockDownload();
 std::string GetWarnings(std::string strFor);
 bool GetTransaction(const uint256 &hash, CTransaction &tx, uint256 &hashBlock);
-
-
-
-
-
-
-
-
-
 
 
 bool GetWalletFile(CWallet* pwallet, std::string &strWalletFileOut);

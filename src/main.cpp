@@ -2092,7 +2092,7 @@ bool LoadBlockIndex(bool fAllowNew)
 		//   vMerkleTree: 6f80efd038 
 
         // Genesis block
-        const char* pszTimestamp = "ICanHazKitteh";
+        const char* pszTimestamp = "ICanHazKitteh at epoch 1387773625. Meow.";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2104,24 +2104,24 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1387782468;
+        block.nTime    = 1387773625;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 598986;
-
+        block.nNonce   = 703577;
 
         if (fTestNet)
         {
-            block.nTime    = 1387782468;
-            block.nNonce   = 0;
+            block.nTime    = 1387773625;
+            block.nNonce   = 703577;
         }
 
         //// debug print
         printf("block.GetHash() = %s\n", block.GetHash().ToString().c_str());
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x446d2c3e2891ce03c1fc1b7f3815a21efb66fb475d0a22765f346e7d83423e47"));
 
-if (true && block.GetHash() != hashGenesisBlock)
+        assert(block.hashMerkleRoot == uint256("0x8718644913581562c59188af4262eddde89860d7e6b7cbba82377499aab497e3"));
+
+        if (true && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
