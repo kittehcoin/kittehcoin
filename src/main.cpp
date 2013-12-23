@@ -2092,7 +2092,7 @@ bool LoadBlockIndex(bool fAllowNew)
 		//   vMerkleTree: 6f80efd038 
 
         // Genesis block
-        const char* pszTimestamp = "Nintondo";
+        const char* pszTimestamp = "ICanHazKitteh";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2104,14 +2104,14 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1386325540;
+        block.nTime    = 1387782468;
         block.nBits    = 0x1e0ffff0;
         block.nNonce   = 99943;
 
 
         if (fTestNet)
         {
-            block.nTime    = 1386325540;
+            block.nTime    = 1387782468;
             block.nNonce   = 0;
         }
 
