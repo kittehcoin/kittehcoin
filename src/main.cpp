@@ -850,12 +850,12 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
         int rand4 = 0;
         int rand5 = 0;
        
-        int height1 = 100000;
-        int height2 = 200000;
-        int height3 = 300000;
-        int height4 = 400000;
-        int height5 = 500000;
-        int height6 = 600000;
+        int height1 = 200000;
+        int height2 = 400000;
+        int height3 = 600000;
+        int height4 = 800000;
+        int height5 = 1000000;
+        int height6 = 1200000;
 
         if(nHeight < height1)    
         {
