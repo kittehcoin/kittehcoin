@@ -31,9 +31,9 @@ static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const int64 MIN_TX_FEE = 100000000; // increased tx fee
+static const int64 MIN_TX_FEE = 10 * COIN; // KITTEH WILL NOT DIE FROM A BLOATED BLOCKCHAIN DAMMIT! 10 MEOW TX FEE. DON'T LIKE IT, KITTEH WILL MAIM YOU.
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64 MAX_MONEY = 100000000000 * COIN; // Same as that mangy dawg for now - max transaction 10,000,000,000 for now but more consideration is needed
+static const int64 MAX_MONEY = 40000000000 * COIN; // 40 billion MEOW = Max amt. MEOW minted by block 1200000 (39375000000 MEOW), rounded up
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 static const int COINBASE_MATURITY = 30;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
