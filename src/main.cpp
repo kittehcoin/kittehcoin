@@ -585,7 +585,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
                 nLastTime = nNow;
                 // -limitfreerelay unit is thousand-bytes-per-minute
                 // At default rate it would take over a month to fill 1GB
-                if (dFreeCount > GetArg("-limitfreerelay", 15)*10*1000 && !IsFromMe(tx))
+                if (dFreeCount > GetArg("-limitfreerelay", 15) * 10 * 1000 && !IsFromMe(tx))
                     return error("CTxMemPool::accept() : free transaction rejected by rate limiter");
                 if (fDebug)
                     printf("Rate limit dFreeCount: %g => %g\n", dFreeCount, dFreeCount+nSize);
@@ -908,7 +908,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 
 
 static const int64 nTargetTimespan = 6 * 60 * 60; // KittehCoin: every 6 hours
-static const int64 nTargetSpacing = 90; // KittehCoin: 30 seconds
+static const int64 nTargetSpacing = 90; // KittehCoin: 90 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //

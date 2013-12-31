@@ -1,43 +1,75 @@
 KittehCoin [MEOW]
+=================
 
-Scrypt Proof of Work
+Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
 
-RPC Port: 22565
-P2P Port: 22566
+Coin inception was roughly December 24, 2013, 09:14:00 AM UTC, when the thread was created. No pre-mining whatsoever was performed before release.
 
-Coin parameters:
+Proof of Work: '''Scrypt'''
 
-90 second Block Targets, 4 Hour Diff Retarget
+RPC Port '''22565'''
+P2P Port '''22566'''
 
-MAX_COIN Total of 50,000,000,000 MEOW. 
 
-Modified random reward system with a guaranteed minimum reward of 1,000 MEOW per block.
+Version 0.7.0 Release Mandatory Update
+--------------------------------------
 
-6 reward tiers, 200,000 blocks per reward tier up to block 1,200,001
 
-Average reward per block per tier (average = mean/tier + 10%)
+'''Version 0.7.0 mandatory client update. This client will no longer connect with the 0.6.x client first released.''' Many things have changed in this release. All fundamental coin parameters have been changed. Max money has changed to 50 billion. Round have tripled in length to 90 seconds, but difficulty readjustment spacing has been increased to 6 hours. Fees have been increased to 1 MEOW to discourage blockchain-bloating spam and dust transactions. The GUI has been updated as well with new icons. 
 
-Tier 1: 55,000  MEOW / block, 11,000,000,000 MEOW EST. TOTAL
-Tier 2: 27,500  MEOW / block,  5,500,000,000 MEOW EST. TOTAL
-Tier 3: 13,750  MEOW / block,  2,750,000,000 MEOW EST. TOTAL
-Tier 4:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
-Tier 5: 3,437.5 MEOW / block,    687,500,000 MEOW EST. TOTAL
-Tier 6: 1718.75 MEOW / block,    343,750,000 MEOW EST. TOTAL
+New v0.7.0 clients can be found in the release/ folder of this repository.
 
-Estimated time to block 1,200,001  (@ 90 seconds per block):  108,000,000 seconds
-@ 86,400 seconds per day: 1250 days
 
-Estimated amount MEOW minted by block 1,200,001: 21,656,250,000 MEOW
-Maximum possible MEOW minted by block 1,200,001: 39,375,000,000 MEOW
-Minimum possible MEOW minter by block 1,200,001:  1,200,000,000 MEOW
+Known Alive Peers
+-----------------
 
-MEOW Mining Rewards Table:
+198.199.117.221:22566
+24.184.43.249:22566
+78.188.9.117:22566
+24.125.252.211:22566
+93.78.120.235:22566
+120.147.85.204:22566
+27.33.1.58:22566
+31.17.57.59:22566
 
-Blocks         1 — 200,000:   1,000 - 100,000 MEOW 
-Blocks   200,001 — 400,000:   1,000 -  50,000 MEOW 
-Blocks   400,001 — 600,000:   1,000 -  25,000 MEOW
-Blocks   600,001 — 800,000:   1,000 -  12,500 MEOW
-Blocks   800,001 — 1,000,000: 1,000 -   6,250 MEOW 
-Blocks 1,000,001 — 1,200,000: 1,000 -   3,125 MEOW
-Blocks 1,200,001 — MAX_COINS:           1,000 MEOW
+
+Coin parameters
+---------------
+
+Target Spacing: '''90 Seconds'''  
+Target Timespan: '''6 hours'''  
+Max Money: '''50,000,000,000 MEOW'''  
+Minimum Transaction Fee: 1 MEOW.
+
+
+Mining reward algorithm
+-----------------------
+
+Multi-tiered reward system. Random reward amounts with a guaranteed minimum reward of 1,000 MEOW per block. Max reward starts at 100,000 and halves per tier until end of tier 6. 200,000 blocks per reward tier up to block 1,200,001. Reward is then fixed at 1,000 MEOW per block, plus transaction fees, until Max Money is reached.
+
+
+Average reward per block per tier (average = mean/tier + 10%)  
+
+Tier 1: 55,000  MEOW / block, 11,000,000,000 MEOW EST. TOTAL  
+Tier 2: 27,500  MEOW / block,  5,500,000,000 MEOW EST. TOTAL  
+Tier 3: 13,750  MEOW / block,  2,750,000,000 MEOW EST. TOTAL  
+Tier 4:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL  
+Tier 5: 3,437.5 MEOW / block,    687,500,000 MEOW EST. TOTAL  
+Tier 6: 1718.75 MEOW / block,    343,750,000 MEOW EST. TOTAL  
+
+Estimated time to block 1,200,001  (@ 90 seconds per block):  1250 days  
+
+Estimated amount MEOW minted by block 1,200,001: 21,656,250,000 MEOW  
+Maximum possible MEOW minted by block 1,200,001: 39,375,000,000 MEOW  
+Minimum possible MEOW minter by block 1,200,001:  1,200,000,000 MEOW  
+
+MEOW Mining Rewards Table:  
+
+Blocks         1 — 200,000:   1,000 - 100,000 MEOW  
+Blocks   200,001 — 400,000:   1,000 -  50,000 MEOW  
+Blocks   400,001 — 600,000:   1,000 -  25,000 MEOW  
+Blocks   600,001 — 800,000:   1,000 -  12,500 MEOW  
+Blocks   800,001 — 1,000,000: 1,000 -   6,250 MEOW  
+Blocks 1,000,001 — 1,200,000: 1,000 -   3,125 MEOW  
+Blocks 1,200,001 — MAX_COINS:           1,000 MEOW  
 
