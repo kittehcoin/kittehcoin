@@ -31,9 +31,9 @@ static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const int64 MIN_TX_FEE = 10 * COIN; // KITTEH WILL NOT DIE FROM A BLOATED BLOCKCHAIN DAMMIT! 10 MEOW TX FEE. DON'T LIKE IT, KITTEH WILL MAIM YOU.
+static const int64 MIN_TX_FEE = 1 * COIN; // KITTEH WILL NOT DIE FROM A BLOATED BLOCKCHAIN DAMMIT! 1 MEOW TX FEE. DON'T LIKE IT, KITTEH WILL MAIM YOU.
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64 MAX_MONEY = 40000000000 * COIN; // 40 billion MEOW = Max amt. MEOW minted by block 1200000 (39375000000 MEOW), rounded up
+static const int64 MAX_MONEY = 50000000000 * COIN; // 40 billion MEOW. Max amt. MEOW minted by block 1200000 (39375000000 MEOW), plus another 11 or so billion MEOW
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 static const int COINBASE_MATURITY = 30;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
@@ -527,7 +527,7 @@ public:
     {
         // Large (in bytes) low-priority (new, small-coin) transactions
         // need a fee.
-        return dPriority > COIN * 2880 / 250; // KittehCoin: 2880 blocks found a day. Priority cutoff is 1 kittehcoin day / 250 bytes.
+        return dPriority > 10 * COIN * 960 / 250; // KittehCoin: 960 blocks found a day (@ 90 seconds / block). Priority cutoff is 10 kittehcoin day / 250 bytes.
     }
 
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
@@ -558,7 +558,7 @@ public:
 
         // To limit dust spam, add MIN_TX_FEE/MIN_RELAY_TX_FEE for any output that is less than 0.01
         BOOST_FOREACH(const CTxOut& txout, vout)
-            if (txout.nValue < CENT)
+            if (txout.nValue < COIN)
                 nMinFee += nBaseFee;
 
         // Raise the price as the block approaches full

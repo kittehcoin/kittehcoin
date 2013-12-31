@@ -61,7 +61,7 @@ int64 nHPSTimerStart;
 
 // Settings
 int64 nTransactionFee = 0;
-int64 nMinimumInputValue = CENT / 100;
+int64 nMinimumInputValue = CENT;
 
 
 
@@ -907,8 +907,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 
 
 
-static const int64 nTargetTimespan = 1 * 60 * 60; // KittehCoin: every hour
-static const int64 nTargetSpacing = 30; // KittehCoin: 30 seconds
+static const int64 nTargetTimespan = 6 * 60 * 60; // KittehCoin: every 6 hours
+static const int64 nTargetSpacing = 90; // KittehCoin: 30 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2114,7 +2114,7 @@ bool LoadBlockIndex(bool fAllowNew)
 
         if (fTestNet)
         {
-            block.nTime    = 1387779684;
+            block.nTime    = 1387779683;
             block.nNonce   = 0;
         }
 
@@ -2460,12 +2460,10 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 }
 
 
-
-
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ascii, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xc0, 0xc0, 0xc0, 0xc0 }; 
+unsigned char pchMessageStart[4] = { 0xd0, 0xd0, 0xd0, 0xd0 }; 
 
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
@@ -2479,10 +2477,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         printf("dropmessagestest DROPPING RECV MESSAGE\n");
         return true;
     }
-
-
-
-
 
     if (strCommand == "version")
     {
@@ -2500,7 +2494,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
         if (pfrom->nVersion < MIN_PROTO_VERSION)
         {
-            // Since February 20, 2012, the protocol is initiated at version 209,
+            // Since December 30, 2013, the protocol is initiated at version 210,
             // and earlier versions are no longer supported
             printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
             pfrom->fDisconnect = true;
@@ -3553,7 +3547,7 @@ CBlock* CreateNewBlock(CReserveKey& reservekey)
                 continue;
 
             // Transaction fee required depends on block size
-            // KittehCoind: Reduce the exempted free transactions to 500 bytes (from Bitcoin's 3000 bytes)
+            // KittehCoind: Reduce the exempted free transactions to 1500 bytes (from Bitcoin's 3000 bytes)
             bool fAllowFree = (nBlockSize + nTxSize < 1500 || CTransaction::AllowFree(dPriority));
             int64 nMinFee = tx.GetMinFee(nBlockSize, fAllowFree, GMF_BLOCK);
 
