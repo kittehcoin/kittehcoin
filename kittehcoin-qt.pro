@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET =
-VERSION = 0.7.0
+VERSION = 0.6.3
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
@@ -10,7 +10,8 @@ LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
 LIBS += -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread
-BOOST_LIB_SUFFIX=-mt
+BOOST_LIB_SUFFIX=
+macx:BOOST_LIB_SUFFIX=-mt
 BOOST_INCLUDE_PATH=/usr/local/lib
 BOOST_LIB_PATH=/usr/local/lib
 BDB_INCLUDE_PATH=/usr/local/lib

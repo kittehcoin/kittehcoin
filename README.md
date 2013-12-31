@@ -11,18 +11,22 @@ RPC Port '''22565'''
 P2P Port '''22566'''
 
 
-Version 0.7.0 Release Mandatory Update
---------------------------------------
-
-
-'''Version 0.7.0 mandatory client update. This client will no longer connect with the 0.6.x client first released.''' Many things have changed in this release. All fundamental coin parameters have been changed. Max money has changed to 50 billion. Round have tripled in length to 90 seconds, but difficulty readjustment spacing has been increased to 6 hours. Fees have been increased to 1 MEOW to discourage blockchain-bloating spam and dust transactions. The GUI has been updated as well with new icons. 
-
 New v0.7.0 clients can be found in the release/ folder of this repository.
 
 
 Known Alive Peers
 -----------------
 
+Dec 31st 2013
+198.199.117.221:22566
+75.187.169.137:22566
+23.247.148.108:22566
+31.17.57.59:22566
+123.247.148.108:22566
+74.102.174.137:22566
+218.215.236.104:22566
+
+Dec 29th 2013
 198.199.117.221:22566
 24.184.43.249:22566
 78.188.9.117:22566
@@ -36,8 +40,8 @@ Known Alive Peers
 Coin parameters
 ---------------
 
-Target Spacing: '''90 Seconds'''  
-Target Timespan: '''6 hours'''  
+Target Spacing: '''30 Seconds'''  
+Target Timespan: '''1 hours'''  
 Max Money: '''50,000,000,000 MEOW'''  
 Minimum Transaction Fee: 1 MEOW.
 
@@ -57,7 +61,7 @@ Tier 4:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
 Tier 5: 3,437.5 MEOW / block,    687,500,000 MEOW EST. TOTAL  
 Tier 6: 1718.75 MEOW / block,    343,750,000 MEOW EST. TOTAL  
 
-Estimated time to block 1,200,001  (@ 90 seconds per block):  1250 days  
+Estimated time to block 1,200,001  (@ 30 seconds per block):  416.66 days 
 
 Estimated amount MEOW minted by block 1,200,001: 21,656,250,000 MEOW  
 Maximum possible MEOW minted by block 1,200,001: 39,375,000,000 MEOW  
