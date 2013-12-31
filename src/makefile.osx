@@ -20,7 +20,7 @@ LIBS= -dead_strip
 TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
 
 ifdef STATIC
-# Build STATIC if you are redistributing the testcoind binary
+# Build STATIC if you are redistributing the kittehcoind binary
 TESTLIBS += \
  $(DEPSDIR)/lib/libboost_unit_test_framework-mt.a
 LIBS += \
@@ -53,9 +53,9 @@ ifdef RELEASE
 # Compile for maximum compatibility and smallest size.
 # This requires that dependencies are compiled
 # the same way.
-CFLAGS = -mmacosx-version-min=10.5 -arch i386 -O3
+CFLAGS = -mmacosx-version-min=10.8 -arch x86_64 -O3
 else
-CFLAGS = -g
+CFLAGS = -g -arch x86_64
 endif
 
 # ppc doesn't work because we don't support big-endian
