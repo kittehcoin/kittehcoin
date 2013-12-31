@@ -1,7 +1,16 @@
 .DS_Store
 Makefile
+Makefile.Debug
+Makefile.Release
 build
 qrc_bitcoin.cpp
+kittehcoin-qt.pro.bak
+object_script.kittehcoin-qt.Debug
+object_script.kittehcoin-qt.Release
 src/obj
 src/kittehcoind
-
+libs/
+share/
+./kittehcoin-qt.exe
+src/kittehcoind.exe
+*.bak
