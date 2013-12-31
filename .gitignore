@@ -1,5 +1,7 @@
+.DS_Store
 Makefile
 build
 qrc_bitcoin.cpp
 src/obj
 src/kittehcoind
+
