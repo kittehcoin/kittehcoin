@@ -1,24 +1,35 @@
 TEMPLATE = app
-TARGET =
+TARGET = kittehcoin-qt
 VERSION = 0.6.3
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
+CONFIG += c+11
+
 
 windows:LIBS += -lshlwapi
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
 BOOST_LIB_SUFFIX=
-macx:BOOST_LIB_SUFFIX=-mt
-BOOST_INCLUDE_PATH=/usr/local/lib
-BOOST_LIB_PATH=/usr/local/lib
-BDB_INCLUDE_PATH=/usr/local/lib
-BDB_LIB_PATH=/usr/local/lib
-OPENSSL_INCLUDE_PATH=/usr/local/lib
-OPENSSL_LIB_PATH=/usr/local/lib
-MINIUPNPC_LIB_PATH=/usr/local/lib
-MINIUPNPC_INCLUDE_PATH=/usr/local/lib
+macx:BOOST_LIB_SUFFIX=
+
+#paths to includes and library files - these may vary based on where you have the libraries installed
+#Note: macports installs the libs in /opt/local. If compiling on OSX 10.9+ boost must be compiled using the arguement -stdlib=libstdc++ otherwise
+# there will be errors related to "symbol not found achitecture x86_x64". Macports does not currently compile the boost this way,
+# so it must be compiled from source.
+BOOST_INCLUDE_PATH=/opt/local/include/boost
+BOOST_LIB_PATH=/opt/local/lib
+BDB_INCLUDE_PATH=/opt/local/include/db53
+BDB_LIB_PATH=/opt/local/lib/db53
+OPENSSL_INCLUDE_PATH=/opt/local/include/openssl
+OPENSSL_LIB_PATH=/opt/local/lib/
+MINIUPNPC_LIB_PATH=/opt/local/lib/
+MINIUPNPC_INCLUDE_PATH=/opt/local/include/miniupnpc
+
+#required for BerkelyDB 5.3 support.
+LIBS += -L/opt/local/include
+LIBS += -L/opt/local/include/db53
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -28,12 +39,13 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
-# use: qmake "RELEASE=1"
+# use: qmake "RELEASE=1" - important!
 contains(RELEASE, 1) {
-    # Mac: compile for maximum compatibility (10.8, 64-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.8 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.8 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-    macx:QMAKE_LFLAGS += -mmacosx-version-min=10.8 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+    # Mac: compile for maximum compatibility (10.7, 64-bit)
+    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+    macx:QMAKE_LFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+
 
     !windows:!macx {
         # Linux: static link
@@ -296,7 +308,7 @@ OTHER_FILES += \
 
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
-    macx:BOOST_LIB_SUFFIX = -mt
+    macx:BOOST_LIB_SUFFIX =
     windows:BOOST_LIB_SUFFIX = -mgw44-mt-s-1_53
 }
 
@@ -320,7 +332,7 @@ isEmpty(BOOST_LIB_PATH) {
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-    macx:BOOST_INCLUDE_PATH = /usr/local/include
+    macx:BOOST_INCLUDE_PATH = /usr/local/include/boost
 }
 
 windows:LIBS += -lws2_32 -lshlwapi -lmswsock
