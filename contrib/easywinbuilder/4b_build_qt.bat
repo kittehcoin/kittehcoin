@@ -21,7 +21,7 @@
  QMAKE_CXXFLAGS="%ADDITIONALCCFLAGS%"^
  QMAKE_CFLAGS="%ADDITIONALCCFLAGS%"
 
-rem @%QTPATH%\qmake.exe %QMPS%
+@%QTPATH%\qmake.exe %QMPS%
 @echo.
 @echo.
 @echo building qt - make...
