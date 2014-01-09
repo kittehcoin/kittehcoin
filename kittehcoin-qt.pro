@@ -27,6 +27,16 @@ OPENSSL_LIB_PATH=/opt/local/lib/
 MINIUPNPC_LIB_PATH=/opt/local/lib/
 MINIUPNPC_INCLUDE_PATH=/opt/local/include/miniupnpc
 
+windows:BOOST_LIB_SUFFIX=-mgw46-mt-s-1_54
+windows:BOOST_INCLUDE_PATH=libs\boost_1_54_0
+windows:BOOST_LIB_PATH=libs\boost_1_54_0\stage\lib
+windows:BDB_INCLUDE_PATH=libs\db-4.8.30.NC\build_unix
+windows:BDB_LIB_PATH=libs\db-4.8.30.NC\build_unix
+windows:OPENSSL_INCLUDE_PATH=libs\openssl-1.0.1e\include
+windows:OPENSSL_LIB_PATH=libs\openssl-1.0.1e
+windows:MINIUPNPC_LIB_PATH=libs\miniupnpc-1.8
+windows:MINIUPNPC_INCLUDE_PATH=libs\miniupnpc-1.8
+
 #required for BerkelyDB 5.3 support.
 LIBS += -L/opt/local/include
 LIBS += -L/opt/local/include/db53
@@ -368,8 +378,8 @@ LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 windows:LIBS += -lole32 -luuid -lgdi32
+windows:LIBS += -l boost_system-mgw46-mt-1_54 -l boost_filesystem-mgw46-mt-1_54 -l boost_program_options-mgw46-mt-1_54 -l boost_thread-mgw46-mt-1_54
 macx:LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX
-
 contains(RELEASE, 1) {
     !windows:!macx {
         # Linux: turn dynamic linking back on for c/c++ runtime libraries
