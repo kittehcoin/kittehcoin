@@ -5,12 +5,12 @@
     <message>
         <location filename="../forms/aboutdialog.ui" line="14"/>
         <source>About Bitcoin</source>
-        <translation>אודות ביטקוין</translation>
+        <translation>אודות קיטיקוין</translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="53"/>
         <source>&lt;b&gt;Bitcoin&lt;/b&gt; version</source>
-        <translation>גרסת &lt;b&gt;ביטקוין&lt;/b&gt;</translation>
+        <translation>גרסת &lt;b&gt;קיטיקוין&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="97"/>
@@ -40,7 +40,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="20"/>
         <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>אלה כתובות הביטקוין שלך עבור קבלת תשלומים.  אתה עשוי לרצות לתת כתובת שונה לכל שולח כדי שתוכל לעקוב אחר מי משלם לך.</translation>
+        <translation>אלה כתובות הקיטיקוין שלך עבור קבלת תשלומים.  אתה עשוי לרצות לתת כתובת שונה לכל שולח כדי שתוכל לעקוב אחר מי משלם לך.</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="36"/>
@@ -212,7 +212,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location filename="../askpassphrasedialog.cpp" line="101"/>
         <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!
 Are you sure you wish to encrypt your wallet?</source>
-        <translation>אזהרה: אם תצפין את הארנק שלך ותאבד את הסיסמה אתה &lt;b&gt;תאבד את כל הביטקוין שלך&lt;/b&gt;!
+        <translation>אזהרה: אם תצפין את הארנק שלך ותאבד את הסיסמה אתה &lt;b&gt;תאבד את כל הקיטיקוין שלך&lt;/b&gt;!
 אתה בטוח שברצונך להצפין את הארנק?</translation>
     </message>
     <message>
@@ -224,7 +224,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="111"/>
         <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>ביטקוין ייסגר עכשיו כדי להשלים את תהליך ההצפנה. זכור שהצפנת הארנק שלך אינו יכול להגן באופן מלא על הביטקוינים שלך מתוכנות זדוניות המושתלות על המחשב.</translation>
+        <translation>קיטיקוין ייסגר עכשיו כדי להשלים את תהליך ההצפנה. זכור שהצפנת הארנק שלך אינו יכול להגן באופן מלא על הביטקוינים שלך מתוכנות זדוניות המושתלות על המחשב.</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="207"/>
@@ -279,7 +279,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="73"/>
         <source>Bitcoin Wallet</source>
-        <translation>ארנק ביטקוין</translation>
+        <translation>ארנק קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="215"/>
@@ -289,7 +289,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="248"/>
         <source>Show/Hide &amp;Bitcoin</source>
-        <translation>הצג/הסתר את &amp;ביטקוין</translation>
+        <translation>הצג/הסתר את &amp;קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="515"/>
@@ -364,7 +364,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="240"/>
         <source>Show information about Bitcoin</source>
-        <translation>הצג מידע על ביטקוין</translation>
+        <translation>הצג מידע על קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="242"/>
@@ -424,7 +424,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="249"/>
         <source>Show or hide the Bitcoin window</source>
-        <translation>הצג או הסתר את חלון ביטקוין.</translation>
+        <translation>הצג או הסתר את חלון קיטיקוין.</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="251"/>
@@ -501,12 +501,12 @@ Are you sure you wish to encrypt your wallet?</source>
         <location filename="../bitcoingui.cpp" line="343"/>
         <location filename="../bitcoingui.cpp" line="399"/>
         <source>Bitcoin client</source>
-        <translation>תוכנת ביטקוין</translation>
+        <translation>תוכנת קיטיקוין</translation>
     </message>
     <message numerus="yes">
         <location filename="../bitcoingui.cpp" line="492"/>
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>חיבור פעיל אחד לרשת הביטקוין</numerusform><numerusform>%n חיבורים פעילים לרשת הביטקוין</numerusform></translation>
+        <translation><numerusform>חיבור פעיל אחד לרשת הקיטיקוין</numerusform><numerusform>%n חיבורים פעילים לרשת הקיטיקוין</numerusform></translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="540"/>
@@ -907,7 +907,7 @@ Address: %4
     <message>
         <location filename="../messagepage.cpp" line="30"/>
         <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>הכנס כתובת ביטקוין (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <translation>הכנס כתובת קיטיקוין (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
         <location filename="../messagepage.cpp" line="83"/>
@@ -953,7 +953,7 @@ Address: %4
     <message>
         <location filename="../optionsdialog.cpp" line="348"/>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>פתח את פורט ביטקוין בנתב באופן אוטומטי. עובד רק אם UPnP מאופשר ונתמך ע&quot;י הנתב.</translation>
+        <translation>פתח את פורט קיטיקוין בנתב באופן אוטומטי. עובד רק אם UPnP מאופשר ונתמך ע&quot;י הנתב.</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="351"/>
@@ -963,7 +963,7 @@ Address: %4
     <message>
         <location filename="../optionsdialog.cpp" line="352"/>
         <source>Connect to the Bitcon network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
-        <translation>התחבר לרשת הביטקוין דרך פרוקסי SOCKS4 (למשל, בעת חיבור דרך Tor)</translation>
+        <translation>התחבר לרשת הקיטיקוין דרך פרוקסי SOCKS4 (למשל, בעת חיבור דרך Tor)</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="357"/>
@@ -1079,7 +1079,7 @@ Address: %4
     <message>
         <location filename="../forms/qrcodedialog.ui" line="105"/>
         <source>BTC</source>
-        <translation>ביטקוין</translation>
+        <translation>קיטיקוין</translation>
     </message>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="121"/>
@@ -1285,7 +1285,7 @@ Address: %4
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="113"/>
         <source>123.456 BTC</source>
-        <translation>123.456 ביטקוין</translation>
+        <translation>123.456 קיטיקוין</translation>
     </message>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="144"/>
@@ -1414,7 +1414,7 @@ Address: %4
     <message>
         <location filename="../sendcoinsentry.cpp" line="26"/>
         <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>הכנס כתובת ביטקוין (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <translation>הכנס כתובת קיטיקוין (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
 </context>
 <context>
@@ -1973,7 +1973,7 @@ Address: %4
     <message>
         <location filename="../bitcoinstrings.cpp" line="43"/>
         <source>Bitcoin version</source>
-        <translation>גרסת ביטקוין</translation>
+        <translation>גרסת קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="44"/>
@@ -2204,7 +2204,7 @@ Address: %4
         <location filename="../bitcoinstrings.cpp" line="108"/>
         <source>
 SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
-        <translation>אפשרויות SSL: (ראה את הויקי של ביטקוין עבור הוראות להתקנת SSL)</translation>
+        <translation>אפשרויות SSL: (ראה את הויקי של קיטיקוין עבור הוראות להתקנת SSL)</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="111"/>
@@ -2239,12 +2239,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     <message>
         <location filename="../bitcoinstrings.cpp" line="121"/>
         <source>Cannot obtain a lock on data directory %s.  Bitcoin is probably already running.</source>
-        <translation>אינו מסוגל לנעול את תיקיית הנתונים %s.  כנראה שביטקוין כבר רץ.</translation>
+        <translation>אינו מסוגל לנעול את תיקיית הנתונים %s.  כנראה שקיטיקוין כבר רץ.</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="48"/>
         <source>Bitcoin</source>
-        <translation>ביטקוין</translation>
+        <translation>קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="30"/>
@@ -2294,12 +2294,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     <message>
         <location filename="../bitcoinstrings.cpp" line="135"/>
         <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
-        <translation>שגיאה בטעינת הקובץ wallet.dat: הארנק דורש גרסה חדשה יותר של ביטקוין</translation>
+        <translation>שגיאה בטעינת הקובץ wallet.dat: הארנק דורש גרסה חדשה יותר של קיטיקוין</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="136"/>
         <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
-        <translation>יש לכתוב מחדש את הארנק: אתחל את ביטקוין לסיום</translation>
+        <translation>יש לכתוב מחדש את הארנק: אתחל את קיטיקוין לסיום</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="137"/>
@@ -2511,7 +2511,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     <message>
         <location filename="../bitcoinstrings.cpp" line="25"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
-        <translation>אזהרה: אנא בדוק שהתאריך והשעה של המחשב הזה נכונים.  אם השעון שלך שגוי ביטקוין לא יפעל כהלכה.</translation>
+        <translation>אזהרה: אנא בדוק שהתאריך והשעה של המחשב הזה נכונים.  אם השעון שלך שגוי קיטיקוין לא יפעל כהלכה.</translation>
     </message>
 </context>
 </TS>
