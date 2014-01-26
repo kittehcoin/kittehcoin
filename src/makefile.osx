@@ -7,11 +7,11 @@
 # Originally by Laszlo Hanyecz (solar@heliacal.net)
 
 CXX=llvm-g++
-DEPSDIR=/usr/local
+DEPSDIR=/opt/local
 
-INCLUDEPATHS= -I"$(CURDIR)" -I"$(CURDIR)/obj" -I"$(DEPSDIR)/include"
+INCLUDEPATHS= -I"$(CURDIR)" -I"$(CURDIR)/obj" -I"$(DEPSDIR)/include" -I"$(DEPSDIR)/include/db53" -I"$(DEPSDIR)/include/boost" -I"$(DEPSDIR)/include/openssl" -I"$(DEPSDIR)/include/miniupnpc"
 
-LIBPATHS= -L"$(DEPSDIR)/lib"
+LIBPATHS= -L"$(DEPSDIR)/lib" -L"$(DEPSDIR)/lib/db53"
 
 USE_UPNP:=1
 
