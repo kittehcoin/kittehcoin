@@ -54,8 +54,8 @@ static const int64 DUST_SOFT_LIMIT = 100000; // 0.001 MEOW
 /** Dust Hard Limit, ignored as wallet inputs (mininput default) */
 static const int64 DUST_HARD_LIMIT = 1000;   // 0.00001 MEOW mininput
 /** No amount larger than this (in satoshi) is valid */
-static const int64 MAX_MONEY =   25000000000 * COIN;
-inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
+inline int64 GetMaxMoney() { return 25000000000 * COIN; } //return nBestHeight <= HARDFORK_BLOCK_HEIGHT ? 50000000000 * COIN : 25000000000 * COIN;
+inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= GetMaxMoney()); }
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
 static const int COINBASE_MATURITY = 100;
 /** Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp. */
@@ -71,15 +71,16 @@ static const int fHaveUPnP = false;
 
 extern CScript COINBASE_FLAGS;
 
-
-
-
-
+//OFFICIAL: 0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76
+//commented out for now to create testnet
+static const uint256 hashGenesisBlockOfficial("0x111111");
+static const uint256 hashGenesisBlockTestnet("0x222222");
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern std::set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexValid;
 extern uint256 hashGenesisBlock;
+
 extern CBlockIndex* pindexGenesisBlock;
 extern int nBestHeight;
 extern uint256 nBestChainWork;
@@ -621,9 +622,14 @@ public:
 
     static bool AllowFree(double dPriority)
     {
-        // Large (in bytes) low-priority (new, small-coin) transactions
-        // need a fee.
-        return dPriority > 100 * COIN * 1440 / 250; 
+        // Large (in bytes) low-priority (new, small-coin) transactions need a fee.
+        // OLD KittehCoin: 2880 blocks found a day (@ 30 seconds / block). Priority cutoff is 100 kittehcoin day / 250 bytes.
+        bool bAllowFree = dPriority > 100 * COIN * 2880 / 250;
+        if(nBestHeight > HARDFORK_BLOCK_HEIGHT) {
+            // NEW KittehCoin: 1440 blocks found a day (@60seconds / block). Same priority cutoff as old spec.
+            bAllowFree = dPriority > 100 * COIN * 1440 / 250;
+        }
+        return bAllowFree;
     }
 
 // Apply the effects of this transaction on the UTXO set represented by view

@@ -31,7 +31,7 @@ static const int PROTOCOL_VERSION = 70002;
 static const int INIT_PROTO_VERSION = 209;
 
 // disconnect from peers older than this proto version
-static const int MIN_PEER_PROTO_VERSION = 70002;
+static const int MIN_PEER_PROTO_VERSION = 60003;
 
 // nTime field added to CAddress, starting with this version;
 // if possible, avoid requesting addresses nodes older than this
@@ -46,5 +46,8 @@ static const int BIP0031_VERSION = 60000;
 
 // "mempool" command, enhanced "getdata" behavior starts with this version:
 static const int MEMPOOL_GD_VERSION = 60002;
+
+// Block number at which the hard fork will be performed
+static const int HARDFORK_BLOCK_HEIGHT = 140000; // high for now for testing purposes
 
 #endif

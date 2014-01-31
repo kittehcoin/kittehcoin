@@ -33,8 +33,10 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76");
+
+uint256 hashGenesisBlock = hashGenesisBlockOfficial;
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // KittehCoin: starting difficulty is 1 / 2^12
+
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 uint256 nBestChainWork = 0;
@@ -561,7 +563,7 @@ bool CTransaction::CheckTransaction(CValidationState &state) const
     {
         if (txout.nValue < 0)
             return state.DoS(100, error("CTransaction::CheckTransaction() : txout.nValue negative"));
-        if (txout.nValue > MAX_MONEY)
+        if (txout.nValue > GetMaxMoney())
             return state.DoS(100, error("CTransaction::CheckTransaction() : txout.nValue too high"));
         nValueOut += txout.nValue;
         if (!MoneyRange(nValueOut))
@@ -624,12 +626,12 @@ int64 CTransaction::GetMinFee(unsigned int nBlockSize, bool fAllowFree,
     if (nBlockSize != 1 && nNewBlockSize >= MAX_BLOCK_SIZE_GEN/2)
     {
         if (nNewBlockSize >= MAX_BLOCK_SIZE_GEN)
-            return MAX_MONEY;
+            return GetMaxMoney();
         nMinFee *= MAX_BLOCK_SIZE_GEN / (MAX_BLOCK_SIZE_GEN - nNewBlockSize);
     }
 
     if (!MoneyRange(nMinFee))
-        nMinFee = MAX_MONEY;
+        nMinFee = GetMaxMoney();
     return nMinFee;
 }
 
@@ -1070,6 +1072,13 @@ int static generateMTRandom(unsigned int s, int range)
     return dist(gen);
 }
 
+/**
+ * @brief GetBlockValue Return the mining reward for a given block, this has 2 modes based on the block height due to the hard fork.
+ * @param nHeight
+ * @param nFees
+ * @param prevHash
+ * @return
+ */
 int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 {
         int64 nSubsidy = 1000 * COIN;
@@ -1085,65 +1094,137 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
         int rand4 = 0;
         int rand5 = 0;
        
-        int height1 = 100000;
-        int height2 = 200000;
-        int height3 = 300000;
-        int height4 = 400000;
-        int height5 = 500000;
-        int height6 = 600000;
+        //start with the old kittehcoin schedule, the block rewards remain the same until we hit the hardfork
+        int height1 = 200000;
+        int height2 = 400000;
+        int height3 = 600000;
+        int height4 = 800000;
+        int height5 = 1000000;
+        int height6 = 1200000;
 
-        if(nHeight < height1)    
-        {
-                nSubsidy = (1 + rand) * COIN > nSubsidy ? (1 + rand) * COIN : nSubsidy;
+        if(nHeight <= HARDFORK_BLOCK_HEIGHT) {
+
+            if(nHeight < height1)
+            {
+                    nSubsidy = (1 + rand) * COIN > nSubsidy ? (1 + rand) * COIN : nSubsidy;
+            }
+            else if(nHeight < height2)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand1 = generateMTRandom(seed, 49999);
+                    nSubsidy = (1 + rand1) * COIN > nSubsidy ? (1 + rand1) * COIN : nSubsidy;
+            }
+            else if(nHeight < height3)
+            {
+                    cseed_str = prevHash.ToString().substr(6,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand2 = generateMTRandom(seed, 24999);
+                    nSubsidy = (1 + rand2) * COIN > nSubsidy ? (1 + rand2) * COIN : nSubsidy;
+            }
+            else if(nHeight < height4)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand3 = generateMTRandom(seed, 12499);
+                    nSubsidy = (1 + rand3) * COIN > nSubsidy ? (1 + rand3) * COIN : nSubsidy;
+            }
+            else if(nHeight < height5)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand4 = generateMTRandom(seed, 6249);
+                    nSubsidy = (1 + rand4) * COIN > nSubsidy ? (1 + rand4) * COIN : nSubsidy;
+            }
+            else if(nHeight < height6)
+            {
+                    cseed_str = prevHash.ToString().substr(6,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand5 = generateMTRandom(seed, 3124);
+                    nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
+            }
+
+        }else if(nHeight > HARDFORK_BLOCK_HEIGHT) {
+
+            //new hard forked coin specs, different payout schedule
+            height1 = 200000;
+            height2 = 400000;
+            height3 = 500000;
+            height4 = 600000;
+            height5 = 700000;
+            height6 = 800000;
+
+            if(nHeight < height1)
+            {
+                    nSubsidy = (1 + rand) * COIN > nSubsidy ? (1 + rand) * COIN : nSubsidy;
+            }
+            else if(nHeight < height2)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand1 = generateMTRandom(seed, 24999);
+                    nSubsidy = (1 + rand1) * COIN > nSubsidy ? (1 + rand1) * COIN : nSubsidy;
+            }
+            else if(nHeight < height3)
+            {
+                    cseed_str = prevHash.ToString().substr(6,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand2 = generateMTRandom(seed, 12499);
+                    nSubsidy = (1 + rand2) * COIN > nSubsidy ? (1 + rand2) * COIN : nSubsidy;
+            }
+            else if(nHeight < height4)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand3 = generateMTRandom(seed, 6249);
+                    nSubsidy = (1 + rand3) * COIN > nSubsidy ? (1 + rand3) * COIN : nSubsidy;
+            }
+            else if(nHeight < height5)
+            {
+                    cseed_str = prevHash.ToString().substr(7,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand4 = generateMTRandom(seed, 3124);
+                    nSubsidy = (1 + rand4) * COIN > nSubsidy ? (1 + rand4) * COIN : nSubsidy;
+            }
+            else if(nHeight < height6)
+            {
+                    cseed_str = prevHash.ToString().substr(6,7);
+                    cseed = cseed_str.c_str();
+                    seed = hex2long(cseed);
+                    rand5 = generateMTRandom(seed, 1561);
+                    nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
+            }
+            else nSubsidy = 2000 * COIN;
         }
-        else if(nHeight < height2)      
-        {
-                cseed_str = prevHash.ToString().substr(7,7);
-                cseed = cseed_str.c_str();
-                seed = hex2long(cseed);
-                rand1 = generateMTRandom(seed, 24999);
-                nSubsidy = (1 + rand1) * COIN > nSubsidy ? (1 + rand1) * COIN : nSubsidy;
-        }
-        else if(nHeight < height3)      
-        {
-                cseed_str = prevHash.ToString().substr(6,7);
-                cseed = cseed_str.c_str();
-                seed = hex2long(cseed);
-                rand2 = generateMTRandom(seed, 12499);
-                nSubsidy = (1 + rand2) * COIN > nSubsidy ? (1 + rand2) * COIN : nSubsidy;
-        }
-        else if(nHeight < height4)      
-        {
-                cseed_str = prevHash.ToString().substr(7,7);
-                cseed = cseed_str.c_str();
-                seed = hex2long(cseed);
-                rand3 = generateMTRandom(seed, 6249);
-                nSubsidy = (1 + rand3) * COIN > nSubsidy ? (1 + rand3) * COIN : nSubsidy;
-        }
-        else if(nHeight < height5)      
-        {
-                cseed_str = prevHash.ToString().substr(7,7);
-                cseed = cseed_str.c_str();
-                seed = hex2long(cseed);
-                rand4 = generateMTRandom(seed, 3124);
-                nSubsidy = (1 + rand4) * COIN > nSubsidy ? (1 + rand4) * COIN : nSubsidy;
-        }
-        else if(nHeight < height6)      
-        {
-                cseed_str = prevHash.ToString().substr(6,7);
-                cseed = cseed_str.c_str();
-                seed = hex2long(cseed);
-                rand5 = generateMTRandom(seed, 1561);
-                nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
-        } 
-        else nSubsidy = 2000 * COIN;
  
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 4 * 60 * 60; // KittehCoin: every 4 hours
-static const int64 nTargetSpacing = 60; // KittehCoin: 60 seconds
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static const int64 nTargetTimespan = 1 * 60 * 60; // KittehCoin retarget time: every 1 hours
+
+int64 GetTargetSpacing() {
+    int nTargetSpacing = 60; // OLD KittehCoin block spacing: 30 seconds
+
+    if(nBestHeight > HARDFORK_BLOCK_HEIGHT)
+        nTargetSpacing = 60; // NEW KittehCoin block spacing: 60 seconds
+
+    return nTargetSpacing;
+}
+
+int64 GetInterval() {
+    int64 nInterval = nTargetTimespan / GetTargetSpacing();
+
+    return nInterval;
+}
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -1152,8 +1233,8 @@ static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
 {
     // Testnet has min-difficulty blocks
-    // after nTargetSpacing*2 time between blocks:
-    if (fTestNet && nTime > nTargetSpacing*2)
+    // after GetTargetSpacing()*2 time between blocks:
+    if (fTestNet && nTime > GetTargetSpacing()*2)
         return bnProofOfWorkLimit.GetCompact();
 
     CBigNum bnResult;
@@ -1179,20 +1260,20 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
         return nProofOfWorkLimit;
 
     // Only change once per interval
-    if ((pindexLast->nHeight+1) % nInterval != 0)
+    if ((pindexLast->nHeight+1) % GetInterval() != 0)
     {
         // Special difficulty rule for testnet:
         if (fTestNet)
         {
             // If the new block's timestamp is more than 2* 10 minutes
             // then allow mining of a min-difficulty block.
-            if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
+            if (pblock->nTime > pindexLast->nTime + GetTargetSpacing()*2)
                 return nProofOfWorkLimit;
             else
             {
                 // Return the last non-special-min-difficulty-rules-block
                 const CBlockIndex* pindex = pindexLast;
-                while (pindex->pprev && pindex->nHeight % nInterval != 0 && pindex->nBits == nProofOfWorkLimit)
+                while (pindex->pprev && pindex->nHeight % GetInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
                     pindex = pindex->pprev;
                 return pindex->nBits;
             }
@@ -1203,9 +1284,9 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
     // KittehCoin: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = nInterval-1;
-    if ((pindexLast->nHeight+1) != nInterval)
-        blockstogoback = nInterval;
+    int blockstogoback = GetInterval()-1;
+    if ((pindexLast->nHeight+1) != GetInterval())
+        blockstogoback = GetInterval();
 
     // Go back by what we want to be 14 days worth of blocks
     const CBlockIndex* pindexFirst = pindexLast;
@@ -2797,7 +2878,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0xfd;
         pchMessageStart[2] = 0xfc;
         pchMessageStart[3] = 0xfc;
-        hashGenesisBlock = uint256("0x42a69c0f56e7cf8e552c7155c7b03f212a8251f11a48127ba587088b861fc2f4");
+        hashGenesisBlock = hashGenesisBlockTestnet;
     }
 
     //
@@ -2848,7 +2929,7 @@ bool InitBlockIndex() {
 
         if (fTestNet) {
             block.nTime    = 1387779683;
-            block.nNonce   = 29960;
+            block.nNonce   = 0;
         } 
 
         //// debug print
@@ -2859,7 +2940,7 @@ bool InitBlockIndex() {
 
         assert(block.hashMerkleRoot == uint256("0xc2adb964220f170f6c4fe9002f0db19a6f9c9608f6f765ba0629ac3897028de5"));
         
-        if (false && block.GetHash() != hashGenesisBlock)
+        if (true && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
