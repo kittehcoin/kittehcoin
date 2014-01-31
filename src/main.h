@@ -73,8 +73,8 @@ extern CScript COINBASE_FLAGS;
 
 //OFFICIAL: 0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76
 //commented out for now to create testnet
-static const uint256 hashGenesisBlockOfficial("0x111111");
-static const uint256 hashGenesisBlockTestnet("0x222222");
+static const uint256 hashGenesisBlockOfficial("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf7677777"); //dummy so we dont f stuff up
+static const uint256 hashGenesisBlockTestnet("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf7655555");
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
