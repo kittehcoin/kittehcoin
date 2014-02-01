@@ -33,8 +33,8 @@ static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int64 MIN_TX_FEE = 1 * COIN; // KITTEH WILL NOT DIE FROM A BLOATED BLOCKCHAIN DAMMIT! 1 MEOW TX FEE. DON'T LIKE IT, KITTEH WILL MAIM YOU.
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64 MAX_MONEY = 50000000000 * COIN; // 50 billion MEOW. Max amt. MEOW minted by block 1200000 (39375000000 MEOW), plus another 11 or so billion MEOW
-inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
+inline int64 GetMaxMoney() { return 25000000000 * COIN; } //return nBestHeight <= HARDFORK_BLOCK_HEIGHT ? 50000000000 * COIN : 25000000000 * COIN;
+inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= GetMaxMoney()); }
 static const int COINBASE_MATURITY = 30;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
@@ -528,8 +528,14 @@ public:
     static bool AllowFree(double dPriority)
     {
         // Large (in bytes) low-priority (new, small-coin) transactions need a fee.
-        // KittehCoin: 2880 blocks found a day (@ 30 seconds / block). Priority cutoff is 100 kittehcoin day / 250 bytes.
-        return dPriority > 100 * COIN * 2880 / 250; 
+        // OLD KittehCoin: 2880 blocks found a day (@ 30 seconds / block). Priority cutoff is 100 kittehcoin day / 250 bytes.
+        bool bAllowFree = dPriority > 100 * COIN * 2880 / 250;
+        if(nBestHeight > HARDFORK_BLOCK_HEIGHT) {
+            // NEW KittehCoin: 1440 blocks found a day (@60seconds / block). Same priority cutoff as old spec.
+            bAllowFree = dPriority > 100 * COIN * 1440 / 250;
+        }
+
+        return bAllowFree;
     }
 
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
@@ -567,12 +573,12 @@ public:
         if (nBlockSize != 1 && nNewBlockSize >= MAX_BLOCK_SIZE_GEN/2)
         {
             if (nNewBlockSize >= MAX_BLOCK_SIZE_GEN)
-                return MAX_MONEY;
+                return GetMaxMoney();
             nMinFee *= MAX_BLOCK_SIZE_GEN / (MAX_BLOCK_SIZE_GEN - nNewBlockSize);
         }
 
         if (!MoneyRange(nMinFee))
-            nMinFee = MAX_MONEY;
+            nMinFee = GetMaxMoney();
         return nMinFee;
     }
 
