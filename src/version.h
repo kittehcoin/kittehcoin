@@ -31,7 +31,7 @@ extern const std::string CLIENT_DATE;
 // network protocol versioning
 //
 
-static const int PROTOCOL_VERSION = 60003;
+static const int PROTOCOL_VERSION = 600031;
 
 static const int MIN_PROTO_VERSION = 209;
 
@@ -45,5 +45,8 @@ static const int NOBLKS_VERSION_END = 60002;
 
 // BIP 0031, pong message, is enabled for all versions AFTER this one
 static const int BIP0031_VERSION = 60000;
+
+// Block number at which the hard fork will be performed
+static const int HARDFORK_BLOCK_HEIGHT = 140000; // high for now for testing purposes
 
 #endif
