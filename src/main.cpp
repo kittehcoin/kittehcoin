@@ -981,7 +981,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 static const int64 nTargetTimespan = 1 * 60 * 60; // KittehCoin: retarget every 1 hours
 int64 GetTargetSpacing()
 {
-    int nTargetSpacing = 60; // OLD KittehCoin block spacing: 30 seconds
+    int nTargetSpacing = 30; // OLD KittehCoin block spacing: 30 seconds
 
     if(nBestHeight > HARDFORK_BLOCK_HEIGHT)
         nTargetSpacing = 60; // NEW KittehCoin block spacing: 60 seconds
