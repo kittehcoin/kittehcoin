@@ -1,4 +1,4 @@
-KittehCoin [MEOW] 0.6.3.1
+KittehCoin [MEOW] 0.6.4.1
 =================
 
 Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
@@ -9,8 +9,9 @@ Proof of Work: '''Scrypt'''
 RPC Port '''22565'''
 P2P Port '''22566'''
 
-
 Root Seed:
+dnsseed.kittehcoinblockexplorer.com
+
 
 Coin parameters
 ---------------
