@@ -865,7 +865,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
         int height5 = 1000000;
         int height6 = 1200000;
 
-        if(nHeight <= HARDFORK_BLOCK_HEIGHT) {
+        if(nHeight <= HARDFORK_BLOCK_HEIGHT)
+        {
 
             if(nHeight < height1)
             {
@@ -912,7 +913,11 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
                     nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
             }
 
-        }else if(nHeight > HARDFORK_BLOCK_HEIGHT) {
+        }
+        else if(nHeight > HARDFORK_BLOCK_HEIGHT)
+        {
+
+            rand = generateMTRandom(seed, 49999);
 
             //new hard forked coin specs, different payout schedule
             height1 = 200000;
@@ -974,7 +979,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
 
 
 static const int64 nTargetTimespan = 1 * 60 * 60; // KittehCoin: retarget every 1 hours
-int64 GetTargetSpacing() {
+int64 GetTargetSpacing()
+{
     int nTargetSpacing = 60; // OLD KittehCoin block spacing: 30 seconds
 
     if(nBestHeight > HARDFORK_BLOCK_HEIGHT)
@@ -983,7 +989,8 @@ int64 GetTargetSpacing() {
     return nTargetSpacing;
 }
 
-int64 GetInterval() {
+int64 GetInterval()
+{
     int64 nInterval = nTargetTimespan / GetTargetSpacing();
 
     return nInterval;

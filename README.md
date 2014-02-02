@@ -2,7 +2,6 @@ KittehCoin [MEOW] 0.6.3.1
 =================
 
 Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
-
 Coin inception was roughly December 24, 2013, 09:14:00 AM UTC, when the thread was created. No pre-mining whatsoever was performed before release.
 
 Proof of Work: '''Scrypt'''
@@ -11,12 +10,7 @@ RPC Port '''22565'''
 P2P Port '''22566'''
 
 
-New v0.7.0 clients can be found in the release/ folder of this repository.
-
-
-Known Alive Peers
------------------
-
+Root Seed:
 
 Coin parameters
 ---------------
