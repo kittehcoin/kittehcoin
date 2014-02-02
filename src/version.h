@@ -47,6 +47,6 @@ static const int NOBLKS_VERSION_END = 60002;
 static const int BIP0031_VERSION = 60000;
 
 // Block number at which the hard fork will be performed
-static const int HARDFORK_BLOCK_HEIGHT = 10; // high for now for testing purposes
+static const int HARDFORK_BLOCK_HEIGHT = 15; // high for now for testing purposes
 
 #endif
