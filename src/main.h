@@ -33,7 +33,7 @@ static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int64 MIN_TX_FEE = 1 * COIN; // KITTEH WILL NOT DIE FROM A BLOATED BLOCKCHAIN DAMMIT! 1 MEOW TX FEE. DON'T LIKE IT, KITTEH WILL MAIM YOU.
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
-inline int64 GetMaxMoney() { return 25000000000 * COIN; } //return nBestHeight <= HARDFORK_BLOCK_HEIGHT ? 50000000000 * COIN : 25000000000 * COIN;
+inline int64 GetMaxMoney() { return nBestHeight <= HARDFORK_BLOCK_HEIGHT ? 50000000000 * COIN : 25000000000 * COIN; }
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= GetMaxMoney()); }
 static const int COINBASE_MATURITY = 30;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
