@@ -25,7 +25,9 @@ Minimum Transaction Fee: 1 MEOW.
 Mining reward algorithm
 -----------------------
 
-Multi-tiered reward system. Random reward amounts with a guaranteed minimum reward of 1,000 MEOW per block. Max reward starts at 100,000 and halves per tier until end of tier 6. 200,000 blocks per reward tier up to block 1,200,001. Reward is then fixed at 1,000 MEOW per block, plus transaction fees, until Max Money is reached.
+Multi-tiered reward system. Random reward amounts with a guaranteed minimum reward of 1,000 MEOW per block.
+Max reward starts at 50,000 and halves every 200k blocks per tier until end of tier 3. After tier 3 halving moves to once every 100k blocks.
+After tier 6 reward is fixed at 2,000 MEOW per block, plus transaction fees, until 25B MEOW is reached.
 
 
 Average reward per block per tier (average = mean/tier + 10%)  
