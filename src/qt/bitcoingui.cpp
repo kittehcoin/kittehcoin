@@ -231,7 +231,7 @@ void BitcoinGUI::createActions()
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
     tabGroup->addAction(receiveCoinsAction);
 
-    sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Purr. Send Kitteh"), this);
+    sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send Meow"), this);
     sendCoinsAction->setToolTip(tr("Send coins to a KittehCoin address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -288,7 +288,7 @@ void BitcoinGUI::createActions()
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("Show/Hide &KittehCoin"), this);
     toggleHideAction->setToolTip(tr("Show or hide the KittehCoin window"));
-    exportAction = new QAction(QIcon(":/icons/export"), tr("&So Export..."), this);
+    exportAction = new QAction(QIcon(":/icons/export"), tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
     encryptWalletAction->setToolTip(tr("Encrypt or decrypt wallet"));
