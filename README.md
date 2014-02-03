@@ -32,22 +32,22 @@ After tier 6 reward is fixed at 2,000 MEOW per block, plus transaction fees, unt
 
 Average reward per block per tier (average = mean/tier + 10%)  
 
-Tier 1: 27,500  MEOW / block,  5,500,000,000 MEOW EST. TOTAL
-Tier 2: 13,750  MEOW / block,  2,750,000,000 MEOW EST. TOTAL
-Tier 3:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
-Tier 4: 3,427.5 MEOW / block,    687,000,000 MEOW EST. TOTAL
-Tier 5: 1718.75 MEOW / block,    343,500,000 MEOW EST. TOTAL
-Tier 6: 1717.75 MEOW / block,    171,500,000 MEOW EST. TOTAL
+- Tier 1: 27,500  MEOW / block,  5,500,000,000 MEOW EST. TOTAL
+- Tier 2: 13,750  MEOW / block,  2,750,000,000 MEOW EST. TOTAL
+- Tier 3:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
+- Tier 4: 3,427.5 MEOW / block,    687,000,000 MEOW EST. TOTAL
+- Tier 5: 1718.75 MEOW / block,    343,500,000 MEOW EST. TOTAL
+- Tier 6: 1717.75 MEOW / block,    171,500,000 MEOW EST. TOTAL
 
 Estimated time to block 800,001  (@ 60 seconds per block):  555.55 days
 
 MEOW Mining Rewards Table:  
 
-Blocks 1 — 200,000: 1,000 – 50,000 MEOW Reward
-Blocks 200,001 — 400,000: 1,000 – 25,000 MEOW Reward
-Blocks 400,001 — 500,000: 1,000 – 12,500 MEOW Reward
-Blocks 500,001 — 600,000: 1,000 – 6,250 MEOW Reward
-Blocks 600,001 — 700,000: 1,000 – 3,125 MEOW Reward
-Blocks 700,001 — 800,000: 1,000 – 1,561 MEOW Reward
-Blocks 800,001+ — 2,000 Reward (flat)
+- Blocks 1 — 200,000: 1,000 – 50,000 MEOW Reward
+- Blocks 200,001 — 400,000: 1,000 – 25,000 MEOW Reward
+- Blocks 400,001 — 500,000: 1,000 – 12,500 MEOW Reward
+- Blocks 500,001 — 600,000: 1,000 – 6,250 MEOW Reward
+- Blocks 600,001 — 700,000: 1,000 – 3,125 MEOW Reward
+- Blocks 700,001 — 800,000: 1,000 – 1,561 MEOW Reward
+- Blocks 800,001+ — 2,000 Reward (flat)
 
