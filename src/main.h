@@ -48,7 +48,7 @@ extern CScript COINBASE_FLAGS;
 
 //OFFICIAL: 0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76
 //TESTNETNEW: 0x16a9688c3fc8b4f0fcb0ea7453dbf0de698bc4e45f7bf111cf4cf149505d77ee
-static const uint256 hashGenesisBlockOfficial("0x16a9688c3fc8b4f0fcb0ea7453dbf0de698bc4e45f7bf111cf4cf149505d77ee");
+static const uint256 hashGenesisBlockOfficial("0x984b30fc9bb5e5ff424ad7f4ec1930538a7b14a2d93e58ad7976c23154ea4a76");
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;

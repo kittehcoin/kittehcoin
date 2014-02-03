@@ -47,6 +47,7 @@ static const int NOBLKS_VERSION_END = 60002;
 static const int BIP0031_VERSION = 60000;
 
 // Block number at which the hard fork will be performed
-static const int HARDFORK_BLOCK_HEIGHT = 10; // high for now for testing purposes
+// announcement block number (114633) + 6 days for network propogation (2880block per day * 6 days = 17280)
+static const int HARDFORK_BLOCK_HEIGHT = 131913; // high for now for testing purposes
 
 #endif
