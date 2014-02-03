@@ -15,7 +15,7 @@
 #define CLIENT_VERSION_MAJOR       0
 #define CLIENT_VERSION_MINOR       6
 #define CLIENT_VERSION_REVISION    4
-#define CLIENT_VERSION_BUILD       0
+#define CLIENT_VERSION_BUILD       1
 
 static const int CLIENT_VERSION =
                            1000000 * CLIENT_VERSION_MAJOR
@@ -45,5 +45,9 @@ static const int NOBLKS_VERSION_END = 60002;
 
 // BIP 0031, pong message, is enabled for all versions AFTER this one
 static const int BIP0031_VERSION = 60000;
+
+// Block number at which the hard fork will be performed
+// announcement block number (114633) + 6 days for network propogation (2880block per day * 6 days = 17280)
+static const int HARDFORK_BLOCK_HEIGHT = 131913;
 
 #endif
