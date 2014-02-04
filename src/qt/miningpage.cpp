@@ -212,7 +212,7 @@ void MiningPage::minerError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart)
     {
-        reportToList("No dig such fail", ERROR, NULL);
+        reportToList("Dig failed", ERROR, NULL);
     }
 }
 
