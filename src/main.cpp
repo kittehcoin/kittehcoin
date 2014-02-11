@@ -1403,8 +1403,8 @@ unsigned int static GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const 
 {
     static const int64  BlocksTargetSpacing         = pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT ? 30 : 60;
     unsigned int        TimeDaySeconds              = 60 * 60 * 24;
-    int64               PastSecondsMin              = TimeDaySeconds * (1/24);
-    int64               PastSecondsMax              = TimeDaySeconds * 1;
+    int64               PastSecondsMin              = TimeDaySeconds * (1 / ( 24 * ( pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT ? 2 : 1 ) ) );
+    int64               PastSecondsMax              = TimeDaySeconds * (1 / ( pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT ? 2 : 1 ) );
     uint64              PastBlocksMin               = PastSecondsMin / BlocksTargetSpacing;
     uint64              PastBlocksMax               = PastSecondsMax / BlocksTargetSpacing; 
     
@@ -1413,7 +1413,7 @@ unsigned int static GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const 
 
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-    if(pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT && !GetArg("-testnet", false)) return GetNextWorkRequired_V1(pindexLast, pblock); 
+    if(pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT && !GetBoolArg("-testnet", false) && !GetBoolArg("-usekgw", false)) return GetNextWorkRequired_V1(pindexLast, pblock); 
     else return GetNextWorkRequired_V2(pindexLast, pblock);
 }
 
