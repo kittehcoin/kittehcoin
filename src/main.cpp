@@ -1063,6 +1063,12 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
     return pblock->GetHash();
 }
 
+// Return maximum amount of blocks that other nodes claim to have
+int GetNumBlocksOfPeers()
+{
+    return std::max(cPeerBlockCounts.median(), Checkpoints::GetTotalBlocksEstimate());
+}
+
 int static generateMTRandom(unsigned int s, int range)
 {
     random::mt19937 gen(s);
@@ -1151,7 +1157,6 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
         }
         else if(nHeight > HARDFORK_BLOCK_HEIGHT)
         {
-
             rand = generateMTRandom(seed, 49999);
 
             //new hard forked coin specs, different payout schedule
@@ -1160,7 +1165,6 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
             height3 = 500000;
             height4 = 600000;
             height5 = 700000;
-            height6 = 800000;
 
             if(nHeight < height1)
             {
@@ -1197,14 +1201,6 @@ int64 static GetBlockValue(int nHeight, int64 nFees, uint256 prevHash)
                     seed = hex2long(cseed);
                     rand4 = generateMTRandom(seed, 3124);
                     nSubsidy = (1 + rand4) * COIN > nSubsidy ? (1 + rand4) * COIN : nSubsidy;
-            }
-            else if(nHeight < height6)
-            {
-                    cseed_str = prevHash.ToString().substr(6,7);
-                    cseed = cseed_str.c_str();
-                    seed = hex2long(cseed);
-                    rand5 = generateMTRandom(seed, 1561);
-                    nSubsidy = (1 + rand5) * COIN > nSubsidy ? (1 + rand5) * COIN : nSubsidy;
             }
             else nSubsidy = 2000 * COIN;
         }
