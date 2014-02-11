@@ -1403,8 +1403,8 @@ unsigned int static GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const 
 {
     static const int64  BlocksTargetSpacing         = pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT ? 30 : 60;
     unsigned int        TimeDaySeconds              = 60 * 60 * 24;
-    int64               PastSecondsMin              = TimeDaySeconds * 0.25;
-    int64               PastSecondsMax              = TimeDaySeconds * 7;
+    int64               PastSecondsMin              = TimeDaySeconds * (1/24);
+    int64               PastSecondsMax              = TimeDaySeconds * 1;
     uint64              PastBlocksMin               = PastSecondsMin / BlocksTargetSpacing;
     uint64              PastBlocksMax               = PastSecondsMax / BlocksTargetSpacing; 
     
@@ -1413,7 +1413,7 @@ unsigned int static GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const 
 
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-    if(pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT) return GetNextWorkRequired_V1(pindexLast, pblock); 
+    if(pindexLast->nHeight < HARDFORK_BLOCK_HEIGHT && !GetArg("-testnet", false)) return GetNextWorkRequired_V1(pindexLast, pblock); 
     else return GetNextWorkRequired_V2(pindexLast, pblock);
 }
 
@@ -2478,7 +2478,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
 bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck)
 {
     // KittehCoin: temporarily disable v2 block lockin until we are ready for v2 transition
-    return false;
+    // return false; SFS commented out
     unsigned int nFound = 0;
     for (unsigned int i = 0; i < nToCheck && nFound < nRequired && pstart != NULL; i++)
     {
@@ -4583,7 +4583,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn)
             // Prioritize by fee once past the priority size or we run out of high-priority
             // transactions:
             if (!fSortedByFee &&
-                ((nBlockSize + nTxSize >= nBlockPrioritySize) || (dPriority < COIN * 576 / 250)))
+                ((nBlockSize + nTxSize >= nBlockPrioritySize) || (dPriority < COIN * (pindexPrev->nHeight < HARDFORK_BLOCK_HEIGHT ? 2880 : 1440) / 250)))
             {
                 fSortedByFee = true;
                 comparer = TxPriorityCompare(fSortedByFee);
