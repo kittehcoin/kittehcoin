@@ -217,7 +217,7 @@ int main(int argc, char *argv[])
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
         splash.show();
-        splash.setAutoFillBackground(true);
+        splash.setAutoFillBackground(false);
         splashref = &splash;
     }
 

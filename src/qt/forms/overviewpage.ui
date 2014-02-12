@@ -189,6 +189,25 @@
          </layout>
         </widget>
        </item>
+	 			<item>
+         <widget class="QLabel" name="label_wallet_bgcoin">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="../bitcoin.qrc">:/images/wallet_bgcoin</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="margin">
+           <number>-2</number>
+          </property>
+         </widget>
+        </item>
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
@@ -197,7 +216,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>2</height>
           </size>
          </property>
         </spacer>
