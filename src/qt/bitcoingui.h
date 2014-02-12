@@ -101,6 +101,7 @@ private:
     QAction *backupWalletAction;
     QAction *changePassphraseAction;
     QAction *aboutQtAction;
+    QAction *openKittehWebsiteURLAction;
     QAction *openRPCConsoleAction;
 
     QSystemTrayIcon *trayIcon;
@@ -183,6 +184,9 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+    
+    /** Open website */
+    void OpenWebsite();
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

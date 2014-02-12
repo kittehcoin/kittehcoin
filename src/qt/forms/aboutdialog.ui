@@ -92,6 +92,7 @@
        </property>
        <property name="text">
         <string notr="true">Copyright &amp;copy; 2009-YYYY The Bitcoin developers
+        Copyright &amp;copy; 2009-YYYY The LiteCoin developers
 Copyright &amp;copy; 2011-YYYY The KittehCoin developers</string>
        </property>
        <property name="textFormat">
