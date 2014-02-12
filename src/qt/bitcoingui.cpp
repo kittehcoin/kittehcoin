@@ -52,6 +52,7 @@
 #include <QSettings>
 #include <QDesktopWidget>
 #include <QListWidget>
+#include <QDesktopServices>
 
 #include <iostream>
 
@@ -216,9 +217,15 @@ void BitcoinGUI::createActions()
     quitAction->setStatusTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
+    
     aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About KittehCoin"), this);
     aboutAction->setStatusTip(tr("Show information about KittehCoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
+
+    openKittehWebsiteURLAction = new QAction(QIcon(":/icons/bitcoin"), tr("&KittehCoin Website"), this);
+    openKittehWebsiteURLAction->setStatusTip(tr("Open KittehCoin Website"));
+    openKittehWebsiteURLAction->setMenuRole(QAction::AboutRole);
+    	
     aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
     aboutQtAction->setStatusTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
@@ -245,6 +252,7 @@ void BitcoinGUI::createActions()
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
+    connect(openKittehWebsiteURLAction, SIGNAL(triggered()), this, SLOT(OpenWebsite()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(optionsAction, SIGNAL(triggered()), this, SLOT(optionsClicked()));
     connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
@@ -281,6 +289,7 @@ void BitcoinGUI::createMenuBar()
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(openRPCConsoleAction);
+    help->addAction(openKittehWebsiteURLAction);
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
@@ -505,6 +514,11 @@ void BitcoinGUI::gotoSignMessageTab(QString addr)
 void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
+}
+
+void BitcoinGUI::OpenWebsite()
+{
+	QDesktopServices::openUrl(QUrl("https://kittehcoin.info/"));
 }
 
 void BitcoinGUI::setNumConnections(int count)
