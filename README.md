@@ -1,4 +1,4 @@
-KittehCoin [MEOW] 0.6.4.1
+KittehCoin [MEOW] 0.8.6.2 with Kimoto Gravity Well
 =================
 
 Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
@@ -17,7 +17,7 @@ Coin parameters
 ---------------
 
 Target Spacing: '''60 Seconds'''
-Target Timespan: '''1 hours'''  
+Target Timespan: '''Kimoto Gravity Well, min blocks @ 36 max blocks @1008'''
 Max Money: '''25,000,000,000 MEOW'''
 Minimum Transaction Fee: 1 MEOW.
 
