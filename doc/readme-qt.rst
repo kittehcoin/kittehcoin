@@ -1,20 +1,38 @@
-Kittehcoin-Qt: Qt4 GUI for Kittehcoin
-=================================
+KittehCoin-Qt: Qt4 GUI for KittehCoin
+===============================
 
 Build instructions
-==================
+===================
 
 Debian
-------
+-------
 
 First, make sure that the required packages for Qt4 development of your
-distribution are installed, for Debian and Ubuntu these are:
+distribution are installed, these are
+
+::
+
+for Debian and Ubuntu  <= 11.10 :
+
+::
+
+    apt-get install qt4-qmake libqt4-dev build-essential libboost-dev libboost-system-dev \
+        libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
+        libssl-dev libdb4.8++-dev libminiupnpc-dev
+
+for Ubuntu >= 12.04 (please read the 'Berkely DB version warning' below):
 
 ::
 
     apt-get install qt4-qmake libqt4-dev build-essential libboost-dev libboost-system-dev \
         libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
         libssl-dev libdb++-dev libminiupnpc-dev
+
+For Qt 5 you need the following, otherwise you get an error with lrelease when running qmake:
+
+::
+
+    apt-get install qt5-qmake libqt5gui5 libqt5core5 libqt5dbus5 qttools5-dev-tools
 
 then execute the following:
 
@@ -27,76 +45,69 @@ Alternatively, install `Qt Creator`_ and open the `kittehcoin-qt.pro` file.
 
 An executable named `kittehcoin-qt` will be built.
 
-.. _`Qt Creator`: http://qt.nokia.com/downloads/
-
-Windows
--------
-
-Windows build instructions:
-
-- Download the `Qt Windows SDK`_ and install it. You don't need the Symbian stuff, just the desktop Qt.
-
-- Download and extract the `dependencies archive`_  [#]_, or compile openssl, boost and dbcxx yourself.
-
-- Copy the contents of the folder "deps" to "X:\\QtSDK\\mingw", replace X:\\ with the location where you installed the Qt SDK. Make sure that the contents of "deps\\include" end up in the current "include" directory.
-
-- Open the kittehcoin-qt.pro file in Qt Creator and build as normal (ctrl-B)
-
-.. _`Qt Windows SDK`: http://qt.nokia.com/downloads/sdk-windows-cpp
-.. _`dependencies archive`: https://download.visucore.com/bitcoin/qtgui_deps_1.zip
-.. [#] PGP signature: https://download.visucore.com/bitcoin/qtgui_deps_1.zip.sig (signed with RSA key ID `610945D0`_)
-.. _`610945D0`: http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x610945D0
-
+.. _`Qt Creator`: http://qt-project.org/downloads/
 
 Mac OS X
 --------
 
 - Download and install the `Qt Mac OS X SDK`_. It is recommended to also install Apple's Xcode with UNIX tools.
 
-- Download and install `MacPorts`_.
+- Download and install either `MacPorts`_ or `HomeBrew`_.
 
-- Execute the following commands in a terminal to get the dependencies:
+- Execute the following commands in a terminal to get the dependencies using MacPorts:
 
 ::
 
 	sudo port selfupdate
 	sudo port install boost db48 miniupnpc
 
+- Execute the following commands in a terminal to get the dependencies using HomeBrew:
+
+::
+
+	brew update
+	brew install boost miniupnpc openssl berkeley-db4
+
+- If using HomeBrew,  edit `kittehcoin-qt.pro` to account for library location differences. There's a diff in `contrib/homebrew/bitcoin-qt-pro.patch` that shows what you need to change, or you can just patch by doing
+
+        patch -p1 < contrib/homebrew/bitcoin.qt.pro.patch
+
 - Open the kittehcoin-qt.pro file in Qt Creator and build as normal (cmd-B)
 
-.. _`Qt Mac OS X SDK`: http://qt.nokia.com/downloads/sdk-mac-os-cpp
+.. _`Qt Mac OS X SDK`: http://qt-project.org/downloads/
 .. _`MacPorts`: http://www.macports.org/install.php
+.. _`HomeBrew`: http://mxcl.github.io/homebrew/
 
 
 Build configuration options
-===========================
+============================
 
 UPnP port forwarding
---------------------
+---------------------
 
 To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable kittehcoin experience), pass the following argument to qmake:
 
 ::
 
-    qmake "USE_UPNP=1"      # This is the default
+    qmake "USE_UPNP=1"
 
 (in **Qt Creator**, you can find the setting for additional qmake arguments under "Projects" -> "Build Settings" -> "Build Steps", then click "Details" next to **qmake**)
 
 This requires miniupnpc for UPnP port mapping.  It can be downloaded from
-http://miniupnp.tuxfamily.org/files/.  UPnP support is compiled in by default.
+http://miniupnp.tuxfamily.org/files/.  UPnP support is not compiled in by default.
 
 Set USE_UPNP to a different value to control this:
 
 +------------+--------------------------------------------------------------------------+
 | USE_UPNP=- | no UPnP support, miniupnpc not required;                                 |
 +------------+--------------------------------------------------------------------------+
-| USE_UPNP=0 | built with UPnP, support turned off by default at runtime;               |
+| USE_UPNP=0 | (the default) built with UPnP, support turned off by default at runtime; |
 +------------+--------------------------------------------------------------------------+
-| USE_UPNP=1 | (the default) build with UPnP support turned on by default at runtime.   |
+| USE_UPNP=1 | build with UPnP support turned on by default at runtime.                 |
 +------------+--------------------------------------------------------------------------+
 
 Notification support for recent (k)ubuntu versions
---------------------------------------------------
+---------------------------------------------------
 
 To see desktop notifications on (k)ubuntu versions starting from 10.04, enable usage of the
 FreeDesktop notification interface through DBUS using the following qmake option:
@@ -106,10 +117,10 @@ FreeDesktop notification interface through DBUS using the following qmake option
     qmake "USE_DBUS=1"
 
 Generation of QR codes
-----------------------
+-----------------------
 
-libqrencode may be used to generate QRCode images for payment requests. 
-It can be downloaded from http://fukuchi.org/works/qrencode/index.html.en, or installed via your package manager. Pass the USE_QRCODE 
+libqrencode may be used to generate QRCode images for payment requests.
+It can be downloaded from http://fukuchi.org/works/qrencode/index.html.en, or installed via your package manager. Pass the USE_QRCODE
 flag to qmake to control this:
 
 +--------------+--------------------------------------------------------------------------+
@@ -122,9 +133,9 @@ flag to qmake to control this:
 Berkely DB version warning
 ==========================
 
-A warning for people using the *static binary* version of Kittehcoin on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
+A warning for people using the *static binary* version of KittehCoin on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
 
-The static binary version of Kittehcoin is linked against libdb4.8 (see also `this Debian issue`_).
+The static binary version of KittehCoin is linked against libdb4.8 (see also `this Debian issue`_).
 
 Now the nasty thing is that databases from 5.X are not compatible with 4.X.
 

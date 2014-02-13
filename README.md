@@ -1,53 +1,74 @@
-KittehCoin [MEOW] 0.6.4.1
-=================
+KittehCoin integration/staging tree
+================================
 
-Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
-Coin inception was roughly December 24, 2013, 09:14:00 AM UTC, when the thread was created. No pre-mining whatsoever was performed before release.
+http://www.kittehcoin.org
 
-Proof of Work: '''Scrypt'''
+Copyright (c) 2009-2013 Bitcoin Developers
+Copyright (c) 2011-2013 KittehCoin Developers
 
-RPC Port '''22565'''
-P2P Port '''22566'''
+What is KittehCoin?
+----------------
 
-Root Seed:
-dnsseed.kittehcoinblockexplorer.com
+KittehCoin is a lite version of Bitcoin using scrypt as a proof-of-work algorithm.
+ - 2.5 minute block targets
+ - subsidy halves in 840k blocks (~4 years)
+ - ~84 million total coins
 
+The rest is the same as Bitcoin.
+ - 50 coins per block
+ - 2016 blocks to retarget difficulty
 
-Coin parameters
----------------
+For more information, as well as an immediately useable, binary version of
+the KittehCoin client sofware, see http://www.kittehcoin.org.
 
-Target Spacing: '''60 Seconds'''
-Target Timespan: '''1 hours'''  
-Max Money: '''25,000,000,000 MEOW'''
-Minimum Transaction Fee: 1 MEOW.
+License
+-------
 
+KittehCoin is released under the terms of the MIT license. See `COPYING` for more
+information or see http://opensource.org/licenses/MIT.
 
-Mining reward algorithm
------------------------
+Development process
+-------------------
 
-Multi-tiered reward system. Random reward amounts with a guaranteed minimum reward of 1,000 MEOW per block.
-Max reward starts at 50,000 and halves every 200k blocks per tier until end of tier 3. After tier 3 halving moves to once every 100k blocks.
-After tier 6 reward is fixed at 2,000 MEOW per block, plus transaction fees, until 25B MEOW is reached.
+Developers work in their own trees, then submit pull requests when they think
+their feature or bug fix is ready.
 
+If it is a simple/trivial/non-controversial change, then one of the KittehCoin
+development team members simply pulls it.
 
-Average reward per block per tier (average = mean/tier + 10%)  
+If it is a *more complicated or potentially controversial* change, then the patch
+submitter will be asked to start a discussion (if they haven't already) on the
+[mailing list](http://sourceforge.net/mailarchive/forum.php?forum_name=bitcoin-development).
 
-- Tier 1: 27,500  MEOW / block,  5,500,000,000 MEOW EST. TOTAL
-- Tier 2: 13,750  MEOW / block,  2,750,000,000 MEOW EST. TOTAL
-- Tier 3:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
-- Tier 4: 3,427.5 MEOW / block,    687,000,000 MEOW EST. TOTAL
-- Tier 5: 1718.75 MEOW / block,    343,500,000 MEOW EST. TOTAL
-- Tier 6: 1717.75 MEOW / block,    171,500,000 MEOW EST. TOTAL
+The patch will be accepted if there is broad consensus that it is a good thing.
+Developers should expect to rework and resubmit patches if the code doesn't
+match the project's coding conventions (see `doc/coding.txt`) or are
+controversial.
 
-Estimated time to block 800,001  (@ 60 seconds per block):  555.55 days
+The `master` branch is regularly built and tested, but is not guaranteed to be
+completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
+regularly to indicate new official, stable release versions of KittehCoin.
 
-MEOW Mining Rewards Table:  
+Testing
+-------
 
-- Blocks 1 — 200,000: 1,000 – 50,000 MEOW Reward
-- Blocks 200,001 — 400,000: 1,000 – 25,000 MEOW Reward
-- Blocks 400,001 — 500,000: 1,000 – 12,500 MEOW Reward
-- Blocks 500,001 — 600,000: 1,000 – 6,250 MEOW Reward
-- Blocks 600,001 — 700,000: 1,000 – 3,125 MEOW Reward
-- Blocks 700,001 — 800,000: 1,000 – 1,561 MEOW Reward
-- Blocks 800,001+ — 2,000 Reward (flat)
+Testing and code review is the bottleneck for development; we get more pull
+requests than we can review and test. Please be patient and help out, and
+remember this is a security-critical project where any mistake might cost people
+lots of money.
+
+### Automated Testing
+
+Developers are strongly encouraged to write unit tests for new code, and to
+submit new unit tests for old code.
+
+Unit tests for the core code are in `src/test/`. To compile and run them:
+
+    cd src; make -f makefile.unix test
+
+Unit tests for the GUI code are in `src/qt/test/`. To compile and run them:
+
+    qmake BITCOIN_QT_TEST=1 -o Makefile.test bitcoin-qt.pro
+    make -f Makefile.test
+    ./kittehcoin-qt_test
 

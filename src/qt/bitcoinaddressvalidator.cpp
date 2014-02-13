@@ -5,8 +5,8 @@
 
   This is:
   - All numbers except for '0'
-  - All uppercase letters except for 'I' and 'O'
-  - All lowercase letters except for 'l'
+  - All upper-case letters except for 'I' and 'O'
+  - All lower-case letters except for 'l'
 
   User friendly Base58 input can map
   - 'l' and 'I' to '1'
@@ -59,7 +59,7 @@ QValidator::State BitcoinAddressValidator::validate(QString &input, int &pos) co
            (ch >= 'A' && ch<='Z')) &&
            ch != 'l' && ch != 'I' && ch != '0' && ch != 'O')
         {
-            // Luckynumeric and not a 'forbidden' character
+            // Alphanumeric and not a 'forbidden' character
         }
         else
         {
