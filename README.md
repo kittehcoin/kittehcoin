@@ -16,10 +16,10 @@ dnsseed.kittehcoinblockexplorer.com
 Coin parameters
 ---------------
 
-Target Spacing: '''60 Seconds'''
-Target Timespan: '''Kimoto Gravity Well, min blocks @ 36 max blocks @1008'''
-Max Money: '''25,000,000,000 MEOW'''
-Minimum Transaction Fee: 1 MEOW.
+Target Spacing: '''60 Seconds'''  
+Target Timespan: '''Kimoto Gravity Well, min blocks @ 36 max blocks @1008'''  
+Max Money: '''25,000,000,000 MEOW'''  
+Minimum Transaction Fee: 1 MEOW.  
 
 
 Mining reward algorithm
