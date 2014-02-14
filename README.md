@@ -9,7 +9,7 @@ Proof of Work: '''Scrypt'''
 RPC Port '''22565'''
 P2P Port '''22566'''
 
-Root Seed:
+Root Seed(s):
 dnsseed.kittehcoinblockexplorer.com
 
 
@@ -27,7 +27,7 @@ Mining reward algorithm
 
 Multi-tiered reward system. Random reward amounts with a guaranteed minimum reward of 1,000 MEOW per block.
 Max reward starts at 50,000 and halves every 200k blocks per tier until end of tier 3. After tier 3 halving moves to once every 100k blocks.
-After tier 6 reward is fixed at 2,000 MEOW per block, plus transaction fees, until 25B MEOW is reached.
+After tier 5 reward is fixed at 2,000 MEOW per block, plus transaction fees, until 25B MEOW is reached.
 
 
 Average reward per block per tier (average = mean/tier + 10%)  
@@ -37,9 +37,6 @@ Average reward per block per tier (average = mean/tier + 10%)
 - Tier 3:  6,875  MEOW / block,  1,375,000,000 MEOW EST. TOTAL
 - Tier 4: 3,427.5 MEOW / block,    687,000,000 MEOW EST. TOTAL
 - Tier 5: 1718.75 MEOW / block,    343,500,000 MEOW EST. TOTAL
-- Tier 6: 1717.75 MEOW / block,    171,500,000 MEOW EST. TOTAL
-
-Estimated time to block 800,001  (@ 60 seconds per block):  555.55 days
 
 MEOW Mining Rewards Table:  
 
@@ -48,6 +45,5 @@ MEOW Mining Rewards Table:
 - Blocks 400,001 — 500,000: 1,000 – 12,500 MEOW Reward
 - Blocks 500,001 — 600,000: 1,000 – 6,250 MEOW Reward
 - Blocks 600,001 — 700,000: 1,000 – 3,125 MEOW Reward
-- Blocks 700,001 — 800,000: 1,000 – 1,561 MEOW Reward
-- Blocks 800,001+ — 2,000 Reward (flat)
+- Blocks 700,001 + : 2,000 Reward (flat)
 

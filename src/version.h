@@ -48,7 +48,6 @@ static const int BIP0031_VERSION = 60000;
 static const int MEMPOOL_GD_VERSION = 60002;
 
 // Block number at which the hard fork will be performed
-// announcement block number (114633) + 6 days for network propogation (2880block per day * 6 days = 17280)
 static const int HARDFORK_HEIGHT_1 = 126250;
 
 #endif
