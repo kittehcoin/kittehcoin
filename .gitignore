@@ -1,16 +1,34 @@
-.DS_Store
-Makefile
-Makefile.Debug
-Makefile.Release
-build
-qrc_bitcoin.cpp
-kittehcoin-qt.pro.bak
-object_script.kittehcoin-qt.Debug
-object_script.kittehcoin-qt.Release
-src/obj
+src/*.exe
+src/kittehcoin
 src/kittehcoind
-libs/
-share/
-./kittehcoin-qt.exe
-src/kittehcoind.exe
+src/test_kittehcoin
+.*.swp
+*.*~*
 *.bak
+*.rej
+*.orig
+*.o
+*.patch
+.kittehcoin
+
+# Compilation and Qt preprocessor part
+*.qm
+Makefile
+kittehcoin-qt
+KittehCoin-Qt.app
+
+# Unit-tests
+Makefile.test
+kittehcoin-qt_test
+
+# Resources cpp
+qrc_*.cpp
+
+# Qt creator
+*.pro.user
+
+# Mac specific
+.DS_Store
+build
+
+!src/leveldb-*/Makefile
