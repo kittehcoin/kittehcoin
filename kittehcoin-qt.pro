@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = kittehcoin-qt
-VERSION = 0.6.4.1
+VERSION = 0.8.6.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
@@ -32,8 +32,8 @@ windows:BOOST_INCLUDE_PATH=libs\boost_1_54_0
 windows:BOOST_LIB_PATH=libs\boost_1_54_0\stage\lib
 windows:BDB_INCLUDE_PATH=libs\db-4.8.30.NC\build_unix
 windows:BDB_LIB_PATH=libs\db-4.8.30.NC\build_unix
-windows:OPENSSL_INCLUDE_PATH=libs\openssl-1.0.1e\include
-windows:OPENSSL_LIB_PATH=libs\openssl-1.0.1e
+windows:OPENSSL_INCLUDE_PATH=libs\openssl-1.0.1g\include
+windows:OPENSSL_LIB_PATH=libs\openssl-1.0.1g
 windows:MINIUPNPC_LIB_PATH=libs\miniupnpc-1.8
 windows:MINIUPNPC_INCLUDE_PATH=libs\miniupnpc-1.8
 
