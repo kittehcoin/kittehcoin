@@ -1,4 +1,4 @@
-KittehCoin [MEOW] 0.8.6.2 with Kimoto Gravity Well
+KittehCoin [MEOW] 0.8.6.3 [IN PROGRESS]
 =================
 
 Kitteh sez MEOW - visit the official bitcointalk thread at [https://bitcointalk.org/index.php?topic=383068.0](https://bitcointalk.org/index.php?topic=383068.0)
@@ -10,7 +10,7 @@ RPC Port '''22565'''
 P2P Port '''22566'''
 
 Root Seed(s):
-dnsseed.kittehcoinblockexplorer.com
+[NEEDS UPDATE]
 
 
 Coin parameters
