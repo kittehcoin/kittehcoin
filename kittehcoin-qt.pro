@@ -42,9 +42,9 @@ contains(RELEASE, 1) {
     #macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
 
     # Mac: compile for maximum compatibility (10.7, 64-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
-    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
-    macx:QMAKE_LFLAGS += -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+    macx:QMAKE_CXXFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+    macx:QMAKE_CFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
+    macx:QMAKE_LFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7 -isysroot /Developer/SDKs/MacOSX10.7.sdk
 
     !win32:!macx {
         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
@@ -407,7 +407,7 @@ isEmpty(BOOST_LIB_PATH) {
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-    macx:BOOST_INCLUDE_PATH = /opt/local/include
+    macx:BOOST_INCLUDE_PATH = /opt/local/include/boost
 }
 
 win32:DEFINES += WIN32
