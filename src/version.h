@@ -49,5 +49,7 @@ static const int MEMPOOL_GD_VERSION = 60002;
 
 // Block number at which the hard fork will be performed
 static const int HARDFORK_HEIGHT_1 = 126250;
+// Edit for new fork for fixing difficulty retarget
+static const int HARDFORK_HEIGHT_2 = XXXXXX;
 
 #endif
