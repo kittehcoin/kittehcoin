@@ -3471,6 +3471,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             vRecv >> pfrom->strSubVer;
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
+        //2015 Fix added
+        if (pfrom->cleanSubVer.substr(1,CLIENT_NAME.size()) != CLIENT_NAME) {
+            // disconnect from peers with invalid CLIENT_NAME
+            printf("partner %s has invalid subversion %s; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->cleanSubVer.c_str());
+            pfrom->fDisconnect = true;
+            return false;
+        }
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
         if (!vRecv.empty())
