@@ -1,3 +1,16 @@
+# KittehCoin (2013)
+> **This repository is archived.** The project continues as **[KittehCoin 2.0](https://github.com/kittehcoin/KittehCoin2.0)** (ticker **MEOWS**) at [www.kittehcoin.ca](https://www.kittehcoin.ca).
+Kitteh sez MEOW.
+This tree is the original KittehCoin source, last published as **0.8.6.2**. It launched around 24 December 2013 as a Scrypt coin with Kimoto Gravity Well. No premine was performed before release. The code is kept here as a historical record. It is no longer built, released, or operated.
+**KittehCoin 2.0** is the same project, rewritten on current Litecoin Core: same ports, same **K** addresses, same reward schedule. It is a **new chain**, not a continuation of the 2013 ledger. Wallets, mining, and documentation live at the links below.
+| | Current project |
+|---|---|
+| Website | https://www.kittehcoin.ca |
+| Source | https://github.com/kittehcoin/KittehCoin2.0 |
+| Ticker | MEOWS |
+---
+
+
 KittehCoin [MEOW] 0.8.6.2 with Kimoto Gravity Well
 =================
 
